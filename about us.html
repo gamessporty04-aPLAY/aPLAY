@@ -1,0 +1,523 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aPLAY collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #6c5ce7, #fd79a8, #00b894);
+            color: #2d3436;
+            min-height: 100vh;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(45, 52, 54, 0.95);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: #fd79a8;
+            font-size: 2.2rem;
+        }
+        
+        .logo h1 {
+            color: white;
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .nav-links a:hover {
+            color: #fd79a8;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* About Us Content */
+        .about-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 2rem;
+        }
+        
+        .about-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .about-header h2 {
+            color: white;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* About Description Section */
+        .about-description {
+            background:#7fff98;
+            border-radius: 50px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .about-description h3 {
+            color: #6c5ce7;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+        }
+        
+        .description-text {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 1.5rem;
+            text-align: justify;
+        }
+        
+        /* Team Section */
+        .team-section {
+            background:#7fffac;
+            border-radius: 50px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+        
+        .team-section h3 {
+            color: #6c5ce7;
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2.2rem;
+        }
+        
+        .team-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        
+        .team-member {
+            text-align: center;
+            padding: 2rem;
+            background:#d96aff;
+            border-radius: 15px;
+            transition: transform 2s ease;
+            position: relative;
+        }
+        
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        
+        /* Image Upload Area */
+        .image-upload {
+            margin-bottom: 1.5rem;
+        }
+        
+        .upload-label {
+            display: block;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #6c5ce7;
+            margin: 0 auto;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 2rem;
+            transition: all 0.3s ease;
+            border: 3px solid #a29bfe;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .upload-label:hover {
+            background: #5b4bd4;
+            transform: scale(1.05);
+        }
+        
+        .member-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            display: none;
+        }
+        
+        .upload-input {
+            display: none;
+        }
+        
+        .upload-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2d3436;
+        }
+        
+        .member-role {
+            color: #6c5ce7;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+        
+        .member-bio {
+            color: #666;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+        
+        /* Image Links Section */
+        .image-links-section {
+            background:#2ac2ff;
+            border-radius: 50px;
+            padding: 3rem;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        }
+        
+        .image-links-section h3 {
+            color: #6c5ce7;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-size: 2.2rem;
+        }
+        
+        .image-links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+        
+        .image-link-card {
+            text-align: center;
+            padding: 1.5rem;
+            background:#7fff83;
+            border-radius: 30px;
+            transition: transform 0.3s ease;
+        }
+        
+        .image-link-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .image-link {
+            display: block;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #fd79a8;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.8rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .image-link:hover {
+            background: #e6679c;
+            transform: scale(1.1);
+        }
+        
+        .link-title {
+            font-weight: 600;
+            color: #2d3436;
+            margin-bottom: 0.5rem;
+        }
+        
+        .link-desc {
+            color: #666;
+            font-size: 0.8rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .team-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-container {
+                padding: 0 1rem;
+            }
+            
+            .about-description, .team-section, .image-links-section {
+                padding: 2rem 1rem;
+            }
+            
+            .image-links-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fas fa-gamepad"></i>
+                <h1>aPLAY</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about.html" class="active">About Us</a>
+            </div>
+        </nav>
+    </header>
+
+    <!-- About Us Content -->
+    <div class="about-container">
+        <div class="about-header">
+            <h2>About aPLAY</h2>
+        </div>
+        
+        <!-- About Description Section -->
+        <div class="about-description">
+            <h3>Our Story</h3>
+            <p class="description-text">
+                Welcome to aPLAY, your ultimate destination for discovering and downloading amazing games! 
+                Founded in 2026, we started as a small passion project and have grown into a leading gaming 
+                platform with millions of users worldwide.
+            </p>
+            <p class="description-text">
+                Our mission is to make premium gaming accessible to everyone. We believe that gaming is more 
+                than just entertainment - it's a way to connect, challenge yourself, and explore new worlds. 
+                Whether you're a casual player or a hardcore gamer, aPLAY has something for everyone.
+            </p>
+            <p class="description-text">
+                We work directly with developers to ensure you get high-quality games that are safe, fun, 
+                and regularly updated. Our platform features a carefully curated collection of games across 
+                all genres - from action-packed adventures to mind-bending puzzles.
+            </p>
+            <p class="description-text">
+                At aPLAY, we're committed to bringing you the best gaming experience possible. Our team 
+                of passionate gamers and developers work tirelessly to create a platform that puts the 
+                gaming community first.
+            </p>
+        </div>
+        
+        <!-- Team Section -->
+        <div class="team-section">
+            <h3>Meet Our Team</h3>
+            <div class="team-grid">
+                
+                <!-- Team Member 1 -->
+                <div class="team-member">
+                    <div class="image-upload">
+                        <label class="upload-label">
+                            <input type="file" class="upload-input" accept="image/*">
+                            <img class="member-image" src="" alt="Team Member">
+                            <div class="upload-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                        </label>
+                    </div>
+                    <h4 class="member-name">Air Smile</h4>
+                    <p class="member-role">Founder & CEO</p>
+                    <p class="member-bio">Former game developer with 10+ years of experience in the gaming industry. Passionate about creating immersive gaming experiences.</p>
+                </div>
+                
+                <!-- Team Member 2 -->
+                <div class="team-member">
+                    <div class="image-upload">
+                        <label class="upload-label">
+                            <input type="file" class="upload-input" accept="image/*">
+                            <img class="member-image" src="" alt="Team Member">
+                            <div class="upload-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                        </label>
+                    </div>
+                    <h4 class="member-name">Scoba 77</h4>
+                    <p class="member-role">Lead Developer</p>
+                    <p class="member-bio">Full-stack developer specializing in gaming platforms and user experience. Loves solving complex technical challenges.</p>
+                </div>
+                
+                <!-- Team Member 3 -->
+                <div class="team-member">
+                    <div class="image-upload">
+                        <label class="upload-label">
+                            <input type="file" class="upload-input" accept="image/*">
+                            <img class="member-image" src="" alt="Team Member">
+                            <div class="upload-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                        </label>
+                    </div>
+                    <h4 class="member-name">Air Smile</h4>
+                    <p class="member-role">Head of Content</p>
+                    <p class="member-bio">Gaming enthusiast and content curator with a passion for discovering hidden gems and creating engaging content.</p>
+                </div>
+                
+                <!-- Team Member 4 -->
+                <div class="team-member">
+                    <div class="image-upload">
+                        <label class="upload-label">
+                            <input type="file" class="upload-input" accept="image/*">
+                            <img class="member-image" src="" alt="Team Member">
+                            <div class="upload-icon">
+                                <i class="fas fa-camera"></i>
+                            </div>
+                        </label>
+                    </div>
+                    <h4 class="member-name">Last born</h4>
+                    <p class="member-role">Community Manager</p>
+                    <p class="member-bio">Building and nurturing our amazing gaming community since day one. Loves connecting with gamers worldwide.</p>
+                </div>
+                
+            </div>
+        </div>
+        
+        <!-- Image Links Section -->
+        <div class="image-links-section">
+            <h3>Quick Links</h3>
+            <div class="image-links-grid">
+                
+                <div class="image-link-card">
+                    <a href="https://facebook.com/gamehub" class="image-link" target="_blank">
+                        <i class="fab fa-facebook-f"></i>
+                    </a>
+                    <div class="link-title">Facebook</div>
+                    <div class="link-desc">Follow us for updates</div>
+                </div>
+                
+                <div class="image-link-card">
+                    <a href="https://twitter.com/gamehub" class="image-link" target="_blank">
+                        <i class="fab fa-twitter"></i>
+                    </a>
+                    <div class="link-title">Twitter</div>
+                    <div class="link-desc">Latest news & announcements</div>
+                </div>
+                
+                <div class="image-link-card">
+                    <a href="https://instagram.com/gamehub" class="image-link" target="_blank">
+                        <i class="fab fa-instagram"></i>
+                    </a>
+                    <div class="link-title">Instagram</div>
+                    <div class="link-desc">Game screenshots & behind scenes</div>
+                </div>
+                
+                <div class="image-link-card">
+                    <a href="https://www.youtube.com/channel/UCDP3rhGTM2MHV2j8r9J-Cmg" class="image-link" target="_blank">
+                        <i class="fab fa-youtube"></i>
+                    </a>
+                    <div class="link-title">YouTube</div>
+                    <div class="link-desc">Game trailers & tutorials</div>
+                </div>
+                
+                <div class="image-link-card">
+                    <a href="https://discord.gg/gamehub" class="image-link" target="_blank">
+                        <i class="fab fa-discord"></i>
+                    </a>
+                    <div class="link-title">Discord</div>
+                    <div class="link-desc">Join our community</div>
+                </div>
+                
+                <div class="image-link-card">
+                    <a href="mailto:contact@gamehub.com" class="image-link">
+                        <i class="fas fa-envelope"></i>
+                    </a>
+                    <div class="link-title">Email</div>
+                    <div class="link-desc">Get in touch with us</div>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Image upload functionality
+        document.querySelectorAll('.upload-input').forEach(input => {
+            input.addEventListener('change', function(e) {
+                const file = e.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    const memberImage = this.parentElement.querySelector('.member-image');
+                    const uploadIcon = this.parentElement.querySelector('.upload-icon');
+                    
+                    reader.onload = function(e) {
+                        memberImage.src = e.target.result;
+                        memberImage.style.display = 'block';
+                        uploadIcon.style.display = 'none';
+                    }
+                    
+                    reader.readAsDataURL(file);
+                }
+            });
+        });
+
+        // Click on upload label to trigger file input
+        document.querySelectorAll('.upload-label').forEach(label => {
+            label.addEventListener('click', function(e) {
+                if (!e.target.classList.contains('upload-input')) {
+                    this.querySelector('.upload-input').click();
+                }
+            });
+        });
+    </script>
+</body>
+</html>

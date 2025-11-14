@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aPLAY Games collection</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --dark: #2d3436;
+            --light: #dfe6e9;
+            --gradient: linear-gradient(135deg, #40a3ff,#ee40ff,#ff2a36);
+        }
+        
+        body {
+            background: var(--gradient);
+            color: var(--dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        /* Header */
+        header {
+            background-color: rgba(45, 52, 54, 0.95);
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo i {
+            color: var(--accent);
+            font-size: 2.2rem;
+        }
+        
+        .logo h1 {
+            color: var(--light);
+            font-size: 1.8rem;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            align-items: center;
+        }
+        
+        .nav-links a {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+            padding: 0.5rem 1rem;
+            border-radius: 4px;
+        }
+        
+        .nav-links a:hover {
+            color: var(--accent);
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Search Box */
+        .search-container {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+        
+        .search-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 25px;
+            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            color: var(--light);
+            font-size: 1rem;
+            width: 250px;
+            transition: all 0.3s ease;
+        }
+        
+        .search-box:focus {
+            outline: none;
+            border-color: var(--accent);
+            width: 300px;
+            background: rgba(255, 255, 255, 0.15);
+        }
+        
+        .search-box::placeholder {
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        .search-icon {
+            position: absolute;
+            left: 12px;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Search Results */
+        .search-results {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            right: 0;
+            background: rgba(45, 52, 54, 0.98);
+            border-radius: 10px;
+            margin-top: 5px;
+            max-height: 300px;
+            overflow-y: auto;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            display: none;
+            z-index: 101;
+        }
+        
+        .search-result-item {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--light);
+            cursor: pointer;
+            transition: background 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .search-result-item:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .search-result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .search-result-item img {
+            width: 40px;
+            height: 40px;
+            border-radius: 5px;
+            object-fit: cover;
+        }
+        
+        .search-result-item .game-info {
+            padding: 0;
+        }
+        
+        .search-result-item .game-title {
+            font-size: 1rem;
+            margin-bottom: 2px;
+            color: var(--light);
+        }
+        
+        .search-result-item .game-category {
+            font-size: 0.8rem;
+            color: var(--secondary);
+        }
+        
+        .no-results {
+            padding: 15px;
+            text-align: center;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            padding: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            width: 100%;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 2rem;
+            color: white;
+            font-size: 2.5rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Games Grid */
+        .games-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+        
+        .game-card {
+            background-color:#ff6afd;
+            border-radius: 30px;
+            overflow: hidden;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .game-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+        }
+        
+        .game-img {
+            height: 200px;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .game-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 2s ease;
+        }
+        
+        .game-card:hover .game-img img {
+            transform: scale(1.1);
+        }
+        
+        .game-info {
+            padding: 1.5rem;
+        }
+        
+        .game-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color:#91ff7f;
+        }
+        
+        .game-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+        
+        .game-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+        
+        .game-rating {
+            color: #fdcb6e;
+        }
+        
+        .game-category {
+            background-color: var(--secondary);
+            color: white;
+            padding: 4px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        
+        /* Download Button Container */
+        .download-container {
+            margin-top: 1rem;
+        }
+        
+        .download-btn {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 2s ease;
+            text-align: center;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .download-btn:hover {
+            background-color: var(--secondary);
+        }
+        
+        .download-btn.secondary {
+            background-color: var(--accent);
+            margin-top: 0.5rem;
+        }
+        
+        .download-btn.secondary:hover {
+            background-color: #e6679c;
+        }
+        
+        /* Button Transform Effects */
+        .download-btn.clicked {
+            animation: buttonTransform 2s ease;
+        }
+        
+        @keyframes buttonTransform {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.9);
+                background-color: #00b894;
+            }
+            75% {
+                transform: scale(1.1);
+                box-shadow: 0 0 20px rgba(0, 184, 148, 0.5);
+            }
+            100% {
+                transform: scale(1);
+                background-color: var(--primary);
+            }
+        }
+        
+        .download-btn.secondary.clicked {
+            animation: buttonTransformSecondary 0.6s ease;
+        }
+        
+        @keyframes buttonTransformSecondary {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(0.9);
+                background-color: #6c5ce7;
+            }
+            75% {
+                transform: scale(1.1);
+                box-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
+            }
+            100% {
+                transform: scale(1);
+                background-color: var(--accent);
+            }
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--dark);
+            color: var(--light);
+            padding: 3rem 2rem 2rem;
+            margin-top: auto;
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .footer-section {
+            flex: 1;
+            min-width: 250px;
+            margin-bottom: 2rem;
+        }
+        
+        .footer-section h3 {
+            color: var(--accent);
+            margin-bottom: 1.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .footer-links {
+            list-style: none;
+        }
+        
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+        
+        .footer-links a {
+            color: var(--light);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: var(--accent);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .social-links a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: var(--light);
+            font-size: 1.2rem;
+            transition: all 0.3s;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--accent);
+            transform: translateY(-5px);
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+        
+        /* Floating Buttons */
+        .whatsapp-float {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            background-color: #25D366;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: transform 0.3s;
+            animation: pulse 2s infinite;
+            text-decoration: none;
+        }
+        
+        .whatsapp-float:hover {
+            transform: scale(1.1);
+        }
+        
+        .youtube-float {
+            position: fixed;
+            bottom: 100px;
+            right: 25px;
+            background-color: #FF0000;
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: transform 0.3s;
+            animation: pulse-red 2s infinite;
+            text-decoration: none;
+        }
+        
+        .youtube-float:hover {
+            transform: scale(1.1);
+        }
+        
+        .music-float {
+            position: fixed;
+            top: 100px;
+            left: 25px;
+            background-color: #00b894;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+            z-index: 100;
+            transition: transform 2s;
+            cursor: pointer;
+        }
+        
+        .music-float:hover {
+            transform: scale(1.1);
+        }
+        
+        .music-float.playing {
+            background-color: #fd79a8;
+            animation: pulse-music 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+        }
+        
+        @keyframes pulse-red {
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
+        }
+        
+        @keyframes pulse-music {
+            0% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(0, 184, 148, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0); }
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .search-container {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .search-box {
+                width: 100%;
+            }
+            
+            .search-box:focus {
+                width: 100%;
+            }
+            
+            .games-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+            
+            .footer-section {
+                min-width: 100%;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .music-float {
+                top: 90px;
+                left: 15px;
+                width: 45px;
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="navbar">
+            <div class="logo">
+                <i class="fab fa-playstation"></i>
+                <h1>aPLAY</h1>
+            </div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="about us.html">About Us</a>
+                <div class="search-container">
+                    <i class="fas fa-search search-icon"></i>
+                    <input type="text" class="search-box" placeholder="Search games...">
+                    <div class="search-results" id="searchResults"></div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <h2 class="section-title">Amazing Games</h2> 
+        
+        <div class="games-grid">
+            <div class="game-card" data-title="god hand">
+                <div class="game-img">
+                    <img src="hand.jpg" alt="GOD HAND" class="image-game">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">GOD HAND</h3>
+                    <p class="game-description">Be  Hero in your imaginary life with horror battle on your ways
+                    .</p>
+                    
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i> 4.9/5
+                        </div>
+                        <div class="game-size"></div>
+                        <div class="game-category">Fighting</div>
+                    </div>
+                    
+                    <div class="download-container">
+                        <a href="https://yourwebsite.com/games/epic-fantasy-free.zip" class="download-btn free-btn" download>
+                            <i class="fas fa-gamepad"></i>Console
+                        </a>
+                        
+                        <a href="https://www.mediafire.com/file/9gefs9uyr0o5co7/GOD_HAND_HACK_EDITION.iso/file" class="download-btn premium-btn" download>
+                            <i class="fab fa-playstation"></i> Game file Free
+                        </a>
+                    </div>
+                </div>
+                
+            </div>
+            
+            <div class="game-card" data-title="god of war">
+                <div class="game-img">
+                    <img src="image.jpg" alt="GOD OF WAR" class="image-game">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">GOD OF WAR</h3>
+                    <p class="game-description">Pass on an unforgettable adventure through enchanted Warfare, ancient ruins, and mystical kingom.</p>
+                    
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i> 4.9/5
+                        </div>
+                        <div class="game-size"></div>
+                        <div class="game-category">RPG • Adventure</div>
+                    </div>
+                    
+                    <div class="download-container">
+                        <a href="https://yourwebsite.com/games/epic-fantasy-free.zip" class="download-btn free-btn" download>
+                            <i class="fas fa-gamepad"></i> Console
+                        </a>
+                        
+                        <a href="https://www.mediafire.com/file/zsj8ckt6ftdlhrq/God_of_War_1_Vampire_Edition.iso/file" class="download-btn premium-btn" download>
+                            <i class="fab fa-playstation"></i> Game File Free
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card" data-title="bright memory infinite">
+                <div class="game-img">
+                    <img src="bright.jpg" alt="BRIGHT MEMORY INFINITE" class="image-game">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">BRIGHT MEMORY INFINITE</h3>
+                    <p class="game-description">Embark on an unforgettable adventure through enchanted forests, ancient ruins, and mystical kingdoms in this epic RPG masterpiece.</p>
+                    
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i> 4.9/5
+                        </div>
+                        <div class="game-size">2.20 GB</div>
+                        <div class="game-category">RPG • Adventure</div>
+                    </div>
+                    
+                    <div class="download-container">
+                        <a href="#" class="download-btn premium-btn" download>
+                            <i class="fab fa-playstation"></i>Game File (Coming soon)
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card" data-title="gta v" data-category="realistic">
+                <div class="game-img">
+                    <img src="gtav.jpg" alt="GTA V" class="image-game">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">GTA V</h3>
+                    <p class="game-description">Experience the thrill of GTA V with realistic gameplay .</p>
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i> 4.7/5
+                        </div>
+                        <div class="game-category">Realistic</div>
+                    </div>
+                    <div class="download-container">
+                        <a href="#" class="download-btn" download>
+                            <i class="fas fa-gamepad"></i>Game hub(Not yet)
+                        </a>
+                        <a href="#" class="download-btn secondary" download>
+                            <i class="fab fa-playstation"></i> Game file Free(Not Yet)
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card" data-title="tomb rider" data-category="action">
+                <div class="game-img">
+                    <img src="tom.jpg" alt="TOMB RIDER" class="image-game">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">TOMB RIDER</h3>
+                    <p class="game-description">Engage war and rescue people from violence in different world sides.</p>
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fab fa-playstation"></i> 4.5/5
+                        </div>
+                        <div class="game-category">Action</div>
+                    </div>
+                    <div class="download-container">
+                        <a href="https://www.mediafire.com/file/fyljdncqwdugwik/Tomb+Raider+-+Anniversary+(USA)+(PSP)+(PSN).zip/file" class="download-btn secondary" download>
+                            <i class="fab fa-youtube"></i> Pin is on Youtube
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card" data-title="fts tz" data-category="rpg action">
+                <div class="game-img">
+                    <img src="ft.jpg" alt="FTS Tz" class="image-game">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">FTS Tz</h3>
+                    <p class="game-description">Enjoy Football feeling with your favorite Africans Teams</p>
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i> 4.3/5
+                        </div>
+                        <div class="game-category">Football</div>
+                    </div>
+                    <div class="download-container">
+                        <a href="https://www.mediafire.com/file/xrmg05osa5jbktu/FTS+25+NBC+aPLAY.zip/file" class="download-btn secondary" download>
+                            <i class="fab fa-playstation"></i> Game File encrypted
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card" data-title="mmaleo bus tz" data-category="horror survival">
+                <div class="game-img">
+                    <img src="ma.jpg" alt="MMALEO BUS Tz">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">PINODIER BUS Tz</h3>
+                    <p class="game-description">Survive terrifying encounters in a mysterious Road filled with a lot of cars .</p>
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i> 4.7/5
+                        </div>
+                        <div class="game-category">Driving</div>
+                    </div>
+                    <div class="download-container">
+                        <a href="https://www.mediafire.com/file/cpf4gi69roa551f/pinodeire+World+bus+by+aPLAY.7z/file" class="download-btn secondary" download>
+                            <i class="fab fa-playstation"></i>Game File encrypted
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="game-card" data-title="mortal combat mobile" data-category="action fps">
+                <div class="game-img">
+                    <img src="gt.jpeg" alt="MORTAL Combat mobile" class="image-game">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">GTA V san andrea mode</h3>
+                    <p class="game-description">Futuristic lifestyle  with advanced Missipn cyber enhancements</p>
+                    
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i> 4.8/5
+                        </div>
+                        <div class="game-size">0.6 GB</div>
+                        <div class="game-category">Action • FPS</div>
+                    </div>
+                    
+                    <div class="download-container">
+                        <a href="https://yourwebPower vr/games/cyber-lite.zip" class="download-btn lite-btn" download>
+                            <i class="fas fa-mobile-alt"></i> CPU Z
+                        </a>
+                        
+                        <a href="https://www.mediafire.com/file/fdvnqd6zwepty11/PowerernoGTA+V+style+Graphics.7z/file" class="download-btn standard-btn" download>
+                            <i class="fab fa-playstation"></i> Power vr encrypted
+                        </a>
+                        
+                        <a href="https://www.mediafire.com/file/q2rt6d1uMalipg0/Aderno-GTA+V+style+graphics.7z/file" class="download-btn hd-btn" download>
+                            <i class="fab fa-playstation"></i> Anderno encrypted
+                        </a>
+                        
+                        <a href="https://www.mediafire.com/file/uxrxzzd5y0cubof/Mali-GTA+v+style+graphics.7z/file" class="download-btn ultra-btn" download>
+                            <i class="fab fa-playstation"></i>Mali encrypted
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- New Game Card with Two Download Buttons -->
+            <div class="game-card" data-title="cyberpunk 2077" data-category="rpg action">
+                <div class="game-img">
+                    <img src="W.jpg" alt="W.jpg" class="image-game">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">DLS 26 </h3>
+                    <p class="game-description">Enjoyed football with your ultimate teams join a season Focus on your carrier.</p>
+                    
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i> 4.6/5
+                        </div>
+                        <div class="game-size"></div>
+                        <div class="game-category">Football</div>
+                    </div>
+                    
+                    <div class="download-container">
+                        <a href="https://download2392.mediafire.com/hrrbl08q9c5ganLfqAcLZqlSOOYrdSZl4jeUS_xlXdd8WOWTn9RiamPem88lbiTTwb5aIu_PgaxM8rnrFoRytDgxRcuwzOt-2lfSYywz_4bSJRCJxqWb6bF_Z1thNrtzf9Xqgqm4E13I6Ir6pId1OpWcQquB-nIHYTT6zPN1GRiR/ych8v382crfk77g/DLS+26+MOD+WYDAD+AC.zip" class="download-btn" download>
+                            <i class="fas fa-gamepad"></i>Additional Data
+                        </a>
+                        
+                        <a href="https://download2287.mediafire.com/v96tc4u4v3ygHeSk24jxX0tKD5ySW6EjbhnyEBl_v-S6IWAbSn2LwiPZRNP2T_UUVr6GyRf-PklbELfBEygas60yax_-n6jVFSSc5Y8VufVu68jZjZ5apx4QnX-2PWFh-c8EJ_9ZRi2-uXWkLZNP9TQ571NAtNDWpJGCVYR4eZQS/6htq8qj0n3g88dz/OBB+DLS+ARABIC+COMMENTARY+BY+DZ+HACKER.zip" class="download-btn secondary" download>
+                            <i class="fab fa-playstation"></i>OBB File (Free)
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- New Game Card with One Download Button -->
+            <div class="game-card" data-title="minecraft" data-category="sandbox adventure">
+                <div class="game-img">
+                    <img src="EF.jpg" alt="Minecraft" class="image-game">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">eFootball PSP</h3>
+                    <p class="game-description">Build, explore and swin in this realistic-based Football Game. Create amazing Te and Win in worlds.</p>
+                    
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i> 4.9/5
+                        </div>
+                        <div class="game-size">700Mb</div>
+                        <div class="game-category">Football</div>
+                    </div>
+                    
+                    <div class="download-container">
+                        <a href="https://www.mediafire.com/file/xet3s2ofesp5do4/eFootball_2026_GAME.zip/file?dkey=il8vm9jx8dh&r=1126" class="download-btn" download>
+                            <i class="fab fa-playstation"></i>Game File (Free)
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>aPLAY</h3>
+                <p>Your ultimate destination for amazing games. Discover, download, and play!</p>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/channel/UCDP3rhGTM2MHV2j8r9J-Cmg"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-discord"></i></a>
+                </div>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <ul class="footer-links">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about us.html">About Us</a></li>
+                    <li><a href="#">Categories</a></li>
+                    <li><a href="#">Top Games</a></li>
+                </ul>
+            </div>
+            
+            <div class="footer-section">
+                <h3>Support</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Help Center</a></li>
+                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="#">FAQ</a></li>
+                    <li><a href="#">System Requirements</a></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer-bottom">
+            <p>&copy; 2026 aPLAY. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--accent);"></i> for gamers</p>
+        </div>
+    </footer>
+
+    <!-- Floating Buttons -->
+    <a href="https://wa.me/255773573560" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <a href="https://www.youtube.com/channel/UCDP3rhGTM2MHV2j8r9J-Cmg" class="youtube-float" target="_blank">
+        <i class="fab fa-youtube"></i>
+    </a>
+
+    <div class="music-float" id="musicButton">
+        <i class="fas fa-music"></i>
+    </div>
+
+    <script>
+        // Search functionality
+        const searchBox = document.querySelector('.search-box');
+        const searchResults = document.getElementById('searchResults');
+        const gameCards = document.querySelectorAll('.game-card');
+        
+        // Sample game data for search
+        const games = [
+            {
+                title: "GOD HAND",
+                category: "Fighting",
+                image: "hand.jpg",
+                element: document.querySelector('[data-title="god hand"]')
+            },
+            {
+                title: "GOD OF WAR",
+                category: "RPG • Adventure",
+                image: "image.jpg",
+                element: document.querySelector('[data-title="god of war"]')
+            },
+            {
+                title: "BRIGHT MEMORY INFINITE",
+                category: "RPG • Adventure",
+                image: "bright.jpg",
+                element: document.querySelector('[data-title="bright memory infinite"]')
+            },
+            {
+                title: "GTA V",
+                category: "Realistic",
+                image: "gtav.jpg",
+                element: document.querySelector('[data-title="gta v"]')
+            },
+            {
+                title: "TOMB RIDER",
+                category: "Action",
+                image: "tom.jpg",
+                element: document.querySelector('[data-title="tomb rider"]')
+            },
+            {
+                title: "FTS Tz",
+                category: "Football",
+                image: "ft.jpg",
+                element: document.querySelector('[data-title="fts tz"]')
+            },
+            {
+                title: "PINODIER BUS Tz",
+                category: "Driving",
+                image: "ma.jpg",
+                element: document.querySelector('[data-title="mmaleo bus tz"]')
+            },
+            {
+                title: "GTA V san andrea mode",
+                category: "Action • FPS",
+                image: "gt.jpeg",
+                element: document.querySelector('[data-title="mortal combat mobile"]')
+            },
+            {
+                title: "DLS 26",
+                category: "Football",
+                image: "W.jpg",
+                element: document.querySelector('[data-title="cyberpunk 2077"]')
+            },
+            {
+                title: "eFootball PSP",
+                category: "Football",
+                image: "EF.jpg",
+                element: document.querySelector('[data-title="minecraft"]')
+            }
+        ];
+        
+        // Search function
+        function performSearch(query) {
+            const results = games.filter(game => 
+                game.title.toLowerCase().includes(query.toLowerCase()) || 
+                game.category.toLowerCase().includes(query.toLowerCase())
+            );
+            
+            displayResults(results);
+        }
+        
+        // Display search results
+        function displayResults(results) {
+            searchResults.innerHTML = '';
+            
+            if (results.length === 0) {
+                searchResults.innerHTML = '<div class="no-results">No games found</div>';
+            } else {
+                results.forEach(game => {
+                    const resultItem = document.createElement('div');
+                    resultItem.className = 'search-result-item';
+                    resultItem.innerHTML = `
+                        <img src="${game.image}" alt="${game.title}">
+                        <div class="game-info">
+                            <div class="game-title">${game.title}</div>
+                            <div class="game-category">${game.category}</div>
+                        </div>
+                    `;
+                    
+                    resultItem.addEventListener('click', () => {
+                        // Scroll to the game card
+                        if (game.element) {
+                            game.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            
+                            // Highlight the game card
+                            game.element.style.boxShadow = '0 0 0 3px var(--accent)';
+                            setTimeout(() => {
+                                game.element.style.boxShadow = '';
+                            }, 2000);
+                        }
+                        
+                        // Close search results
+                        searchResults.style.display = 'none';
+                        searchBox.value = '';
+                    });
+                    
+                    searchResults.appendChild(resultItem);
+                });
+            }
+            
+            searchResults.style.display = results.length > 0 ? 'block' : 'none';
+        }
+        
+        // Event listeners for search
+        searchBox.addEventListener('input', function() {
+            const query = this.value.trim();
+            
+            if (query.length > 0) {
+                performSearch(query);
+            } else {
+                searchResults.style.display = 'none';
+            }
+        });
+        
+        // Close search results when clicking outside
+        document.addEventListener('click', function(e) {
+            if (!e.target.closest('.search-container')) {
+                searchResults.style.display = 'none';
+            }
+        });
+        
+        // Music functionality
+        const musicButton = document.getElementById('musicButton');
+        let audio = null;
+        let isPlaying = false;
+
+        // Auto-play music when page loads
+        window.addEventListener('load', function() {
+            audio = new Audio('mond.mp3'); // Your local song
+            audio.loop = true;
+            audio.play().then(() => {
+                isPlaying = true;
+                musicButton.classList.add('playing');
+                musicButton.innerHTML = '<i class="fas fa-pause"></i>';
+            }).catch(error => {
+                console.log('Auto-play prevented:', error);
+            });
+        });
+
+        // Toggle play/pause on click
+        musicButton.addEventListener('click', function() {
+            if (audio) {
+                if (isPlaying) {
+                    audio.pause();
+                    musicButton.classList.remove('playing');
+                    musicButton.innerHTML = '<i class="fas fa-music"></i>';
+                } else {
+                    audio.play();
+                    musicButton.classList.add('playing');
+                    musicButton.innerHTML = '<i class="fas fa-pause"></i>';
+                }
+                isPlaying = !isPlaying;
+            }
+        });
+        
+        // Button transform effect
+        document.querySelectorAll('.download-btn').forEach(button => {
+            button.addEventListener('click', function(e) {
+                // Add clicked class for animation
+                this.classList.add('clicked');
+                
+                // Remove class after animation completes
+                setTimeout(() => {
+                    this.classList.remove('clicked');
+                }, 600);
+            });
+        });
+    </script>
+</body>
+</html>
