@@ -14,13 +14,12 @@
         }
         
         :root {
-            --primary: #2563eb;
-            --secondary: #1e40af;
-            --accent: #f59e0b;
-            --dark: #1f2937;
-            --light: #f3f4f6;
-            --card-bg: #ffffff;
-            --gradient: linear-gradient(135deg,#0c9c96,#68ff55,#c415ff);
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --dark: #2d3436;
+            --light: #dfe6e9;
+            --gradient: linear-gradient(135deg, #40a3ff,#ee40ff,#ff2a36);
         }
         
         body {
@@ -29,17 +28,17 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
+            transition: background 1s ease;
         }
         
         /* Header */
         header {
-            background-color: rgba(31, 41, 55, 0.95);
+            background-color: rgba(45, 52, 54, 0.95);
             padding: 1rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(10px);
         }
         
         .navbar {
@@ -62,7 +61,7 @@
         }
         
         .logo h1 {
-            color: white;
+            color: var(--light);
             font-size: 1.8rem;
             font-weight: 700;
         }
@@ -74,7 +73,7 @@
         }
         
         .nav-links a {
-            color: #e5e7eb;
+            color: var(--light);
             text-decoration: none;
             font-weight: 500;
             transition: color 0.3s;
@@ -97,7 +96,7 @@
         .search-box {
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
+            border-radius: 25px;
             padding: 0.5rem 1rem 0.5rem 2.5rem;
             color: var(--light);
             font-size: 1rem;
@@ -128,7 +127,7 @@
             top: 100%;
             left: 0;
             right: 0;
-            background: rgba(31, 41, 55, 0.98);
+            background: rgba(45, 52, 54, 0.98);
             border-radius: 10px;
             margin-top: 5px;
             max-height: 300px;
@@ -211,17 +210,16 @@
         }
         
         .game-card {
-            background-color:#40b8ff;
+            background-color:#ff6afd;
             border-radius: 30px;
             overflow: hidden;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            transition: transform 2s, box-shadow 0.3s;
-            border: 1px solid #e5e7eb;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
         }
         
         .game-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
         }
         
         .game-img {
@@ -249,12 +247,11 @@
         .game-title {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color: #1f2937;
-            font-weight: 600;
+            color:#91ff7f;
         }
         
         .game-description {
-            color: #6b7280;
+            color: #666;
             margin-bottom: 1rem;
             font-size: 0.9rem;
             line-height: 1.5;
@@ -268,17 +265,15 @@
         }
         
         .game-rating {
-            color: #f59e0b;
-            font-weight: 600;
+            color: #fdcb6e;
         }
         
         .game-category {
-            background-color: var(--primary);
+            background-color: var(--secondary);
             color: white;
-            padding: 6px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
             font-size: 0.8rem;
-            font-weight: 500;
         }
         
         /* Download Button Container */
@@ -293,11 +288,11 @@
             background-color: var(--primary);
             color: white;
             border: none;
-            border-radius: 8px;
+            border-radius: 16px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 2s ease;
             text-align: center;
             text-decoration: none;
             margin-bottom: 0.5rem;
@@ -307,8 +302,6 @@
         
         .download-btn:hover {
             background-color: var(--secondary);
-            transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
         }
         
         .download-btn.secondary {
@@ -317,13 +310,12 @@
         }
         
         .download-btn.secondary:hover {
-            background-color: #d97706;
-            box-shadow: 0 4px 12px rgba(245, 158, 11, 0.3);
+            background-color: #e6679c;
         }
         
         /* Button Transform Effects */
         .download-btn.clicked {
-            animation: buttonTransform 0.6s ease;
+            animation: buttonTransform 2s ease;
         }
         
         @keyframes buttonTransform {
@@ -331,12 +323,12 @@
                 transform: scale(1);
             }
             50% {
-                transform: scale(0.95);
-                background-color: #10b981;
+                transform: scale(0.9);
+                background-color: #00b894;
             }
             75% {
-                transform: scale(1.05);
-                box-shadow: 0 0 20px rgba(16, 185, 129, 0.5);
+                transform: scale(1.1);
+                box-shadow: 0 0 20px rgba(0, 184, 148, 0.5);
             }
             100% {
                 transform: scale(1);
@@ -353,12 +345,12 @@
                 transform: scale(1);
             }
             50% {
-                transform: scale(0.95);
-                background-color: #2563eb;
+                transform: scale(0.9);
+                background-color: #6c5ce7;
             }
             75% {
-                transform: scale(1.05);
-                box-shadow: 0 0 20px rgba(37, 99, 235, 0.5);
+                transform: scale(1.1);
+                box-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
             }
             100% {
                 transform: scale(1);
@@ -461,19 +453,20 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             z-index: 100;
             transition: transform 0.3s;
-            animation: pulse 2s infinite;
+            animation: pulse 2s infinite, spin 3s linear infinite;
             text-decoration: none;
         }
         
         .whatsapp-float:hover {
             transform: scale(1.1);
+            animation-play-state: paused;
         }
         
         .youtube-float {
             position: fixed;
             bottom: 100px;
             right: 25px;
-            background-color: #DC2626;
+            background-color: #FF0000;
             color: white;
             width: 60px;
             height: 60px;
@@ -485,19 +478,20 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             z-index: 100;
             transition: transform 0.3s;
-            animation: pulse-red 2s infinite;
+            animation: pulse-red 2s infinite, spin 3s linear infinite;
             text-decoration: none;
         }
         
         .youtube-float:hover {
             transform: scale(1.1);
+            animation-play-state: paused;
         }
         
         .music-float {
             position: fixed;
             top: 100px;
             left: 25px;
-            background-color: var(--primary);
+            background-color: #00b894;
             color: white;
             width: 50px;
             height: 50px;
@@ -508,17 +502,19 @@
             font-size: 1.5rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             z-index: 100;
-            transition: transform 0.3s;
+            transition: transform 2s;
             cursor: pointer;
+            animation: spin 3s linear infinite;
         }
         
         .music-float:hover {
             transform: scale(1.1);
+            animation-play-state: paused;
         }
         
         .music-float.playing {
-            background-color: var(--accent);
-            animation: pulse-music 1.5s infinite;
+            background-color: #fd79a8;
+            animation: pulse-music 1.5s infinite, spin 3s linear infinite;
         }
         
         @keyframes pulse {
@@ -528,15 +524,20 @@
         }
         
         @keyframes pulse-red {
-            0% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(220, 38, 38, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
         }
         
         @keyframes pulse-music {
-            0% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0.7); }
-            70% { box-shadow: 0 0 0 8px rgba(37, 99, 235, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 99, 235, 0); }
+            0% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0.7); }
+            70% { box-shadow: 0 0 0 8px rgba(0, 184, 148, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0); }
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
         
         /* Responsive */
@@ -610,7 +611,7 @@
     <div class="main-content">
         <h2 class="section-title">Amazing Games</h2> 
         
-        <div class="games-grid">
+        <div class="games-grid" id="gamesGrid">
             <div class="game-card" data-title="god hand">
                 <div class="game-img">
                     <img src="hand.jpg" alt="GOD HAND" class="image-game">
@@ -898,6 +899,33 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- COD WARFARE Game Card -->
+            <div class="game-card" data-title="cod warfare" data-category="action fps">
+                <div class="game-img">
+                    <img src="COD.jpeg" alt="COD WARFARE" class="image-game">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">COD WARFARE</h3>
+                    <p class="game-description">Experience intense modern warfare combat in this action-packed FPS game with realistic graphics and immersive gameplay.</p>
+                    
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i> 4.8/5
+                        </div>
+                        <div class="game-size">3 GB</div>
+                        <div class="game-category">Action • FPS</div>
+                    </div>
+                    
+                    <div class="download-container">
+                     
+                        
+                        <a href="https://www.mediafire.com/file/6fm25f39to92gjy/Call_of_Duty_-_Modern_Warfare_3_%2528USA%2529.7z/file?dkey=tfnebh3kqss&r=251" class="download-btn secondary" download>
+                            <i class="fab fa-playstation"></i> Game File (Free)
+                        </a>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -1028,6 +1056,12 @@
                 category: "Action • Adventure",
                 image: "spider-man.jpg",
                 element: document.querySelector('[data-title="spider man amazing 2"]')
+            },
+            {
+                title: "COD WARFARE",
+                category: "Action • FPS",
+                image: "cod.jpg",
+                element: document.querySelector('[data-title="cod warfare"]')
             }
         ];
         
@@ -1147,6 +1181,41 @@
                 }, 600);
             });
         });
+
+        // Random background color change every 5 seconds
+        function getRandomColor() {
+            const letters = '0123456789ABCDEF';
+            let color = '#';
+            for (let i = 0; i < 6; i++) {
+                color += letters[Math.floor(Math.random() * 16)];
+            }
+            return color;
+        }
+
+        function changeBackgroundColor() {
+            const color1 = getRandomColor();
+            const color2 = getRandomColor();
+            const color3 = getRandomColor();
+            document.body.style.background = `linear-gradient(135deg, ${color1}, ${color2}, ${color3})`;
+        }
+
+        // Change background color every 5 seconds
+        setInterval(changeBackgroundColor, 5000);
+
+        // Shuffle game cards every 20 seconds
+        function shuffleGameCards() {
+            const gamesGrid = document.getElementById('gamesGrid');
+            const gameCards = Array.from(gamesGrid.querySelectorAll('.game-card'));
+            
+            // Shuffle the array
+            for (let i = gameCards.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                gamesGrid.insertBefore(gameCards[j], gameCards[i]);
+            }
+        }
+
+        // Shuffle game cards every 20 seconds
+        setInterval(shuffleGameCards, 20000);
     </script>
 </body>
 </html>
