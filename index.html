@@ -10,35 +10,356 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe Ul', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         :root {
             --primary: #6c5ce7;
             --secondary: #a29bfe;
-            --accent: #fd79a8;
+            --accent: #00b894;
             --dark: #2d3436;
-            --light: #dfe6e9;
-            --gradient: linear-gradient(135deg, #40a3ff,#ee40ff,#ff2a36);
+            --light: #f5f6fa;
+            --dark-bg: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
+            --card-bg: rgba(255, 255, 255, 0.1);
         }
         
         body {
-            background: var(--gradient);
-            color: var(--dark);
+            background: var(--dark-bg);
+            color: var(--light);
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            transition: background 1s ease;
         }
         
+        /* WhatsApp AI Banner */
+        .whatsapp-ai-banner {
+            background: linear-gradient(135deg, #25D366, #128C7E, #075E54);
+            color: white;
+            padding: 15px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            animation: neonBorderGlow 3s infinite alternate;
+            margin: 0;
+            border-bottom: 2px solid transparent;
+        }
+
+        .whatsapp-ai-banner::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            background: linear-gradient(45deg, #25D366, #128C7E, #075E54, #25D366, #128C7E);
+            z-index: -1;
+            filter: blur(15px);
+            opacity: 0.7;
+            animation: rotate 10s linear infinite;
+        }
+
+        @keyframes neonBorderGlow {
+            0% {
+                box-shadow: 
+                    0 0 5px #25D366,
+                    0 0 10px #128C7E,
+                    0 0 15px #075E54;
+                border-color: #25D366;
+            }
+            33% {
+                box-shadow: 
+                    0 0 10px #128C7E,
+                    0 0 20px #075E54,
+                    0 0 30px #25D366;
+                border-color: #128C7E;
+            }
+            66% {
+                box-shadow: 
+                    0 0 15px #075E54,
+                    0 0 30px #25D366,
+                    0 0 45px #128C7E;
+                border-color: #075E54;
+            }
+            100% {
+                box-shadow: 
+                    0 0 20px #25D366,
+                    0 0 40px #128C7E,
+                    0 0 60px #075E54;
+                border-color: #25D366;
+            }
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .whatsapp-ai-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .ai-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1;
+        }
+
+        .ai-info i {
+            font-size: 1.8rem;
+            animation: bounce 2s infinite;
+        }
+
+        .ai-text {
+            text-align: left;
+        }
+
+        .ai-text h3 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+
+        .ai-text p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+            margin: 0;
+        }
+
+        .ai-actions {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .ai-question-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: 8px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .ai-question-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateY(-2px);
+        }
+
+        .whatsapp-ai-btn {
+            background: white;
+            color: #25D366;
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .whatsapp-ai-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
+            40% {transform: translateY(-5px);}
+            60% {transform: translateY(-3px);}
+        }
+
+        /* AI Chat Modal */
+        .ai-chat-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            backdrop-filter: blur(5px);
+        }
+
+        .ai-chat-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 500px;
+            background: white;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            animation: modalAppear 0.3s ease;
+        }
+
+        @keyframes modalAppear {
+            from {
+                opacity: 0;
+                transform: translate(-50%, -60%);
+            }
+            to {
+                opacity: 1;
+                transform: translate(-50%, -50%);
+            }
+        }
+
+        .ai-chat-header {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .ai-chat-header h3 {
+            margin: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .ai-close-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 1.2rem;
+            cursor: pointer;
+            padding: 8px;
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.2s;
+        }
+
+        .ai-close-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: rotate(90deg);
+        }
+
+        .ai-chat-body {
+            padding: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+            background: #f8f9fa;
+        }
+
+        .ai-message {
+            margin-bottom: 15px;
+            padding: 12px 16px;
+            border-radius: 18px;
+            max-width: 85%;
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        .ai-message.bot {
+            background: white;
+            border-bottom-left-radius: 5px;
+            align-self: flex-start;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e0e0e0;
+        }
+
+        .ai-message.user {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border-bottom-right-radius: 5px;
+            align-self: flex-end;
+            margin-left: auto;
+        }
+
+        .ai-quick-questions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .ai-quick-question {
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid rgba(37, 211, 102, 0.2);
+            color: #128C7E;
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .ai-quick-question:hover {
+            background: rgba(37, 211, 102, 0.2);
+            transform: translateY(-2px);
+        }
+
+        .ai-chat-input {
+            padding: 15px;
+            border-top: 1px solid #e0e0e0;
+            display: flex;
+            gap: 10px;
+            background: white;
+        }
+
+        .ai-chat-input input {
+            flex: 1;
+            padding: 12px 18px;
+            border: 1px solid #ddd;
+            border-radius: 25px;
+            outline: none;
+            font-size: 0.9rem;
+        }
+
+        .ai-chat-input input:focus {
+            border-color: #25D366;
+        }
+
+        .ai-send-btn {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 45px;
+            height: 45px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s;
+        }
+
+        .ai-send-btn:hover {
+            transform: scale(1.05);
+        }
+
         /* Header */
         header {
-            background-color: rgba(45, 52, 54, 0.95);
+            background-color: rgba(0, 0, 0, 0.8);
             padding: 1rem 2rem;
             position: sticky;
             top: 0;
             z-index: 100;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
         }
         
         .navbar {
@@ -86,39 +407,59 @@
             background-color: rgba(255, 255, 255, 0.1);
         }
         
-        /* Search Box */
+        /* Enhanced Search Box with Consistent Glow */
         .search-container {
             position: relative;
             display: flex;
             align-items: center;
+            flex: 1;
+            max-width: 500px;
+            margin: 0 2rem;
         }
         
         .search-box {
             background: rgba(255, 255, 255, 0.1);
             border: 2px solid rgba(255, 255, 255, 0.2);
-            border-radius: 25px;
-            padding: 0.5rem 1rem 0.5rem 2.5rem;
+            border-radius: 30px;
+            padding: 0.7rem 1rem 0.7rem 3rem;
             color: var(--light);
             font-size: 1rem;
-            width: 250px;
-            transition: all 0.3s ease;
+            width: 100%;
+            transition: all 0.4s ease;
+            box-shadow: 0 0 0 rgba(0, 184, 148, 0);
         }
         
         .search-box:focus {
             outline: none;
             border-color: var(--accent);
-            width: 300px;
             background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 20px rgba(0, 184, 148, 0.4);
+            animation: searchPulse 2s infinite;
+        }
+        
+        @keyframes searchPulse {
+            0% {
+                box-shadow: 0 0 10px rgba(0, 184, 148, 0.4);
+            }
+            50% {
+                box-shadow: 0 0 20px rgba(0, 184, 148, 0.6);
+            }
+            100% {
+                box-shadow: 0 0 10px rgba(0, 184, 148, 0.4);
+            }
         }
         
         .search-box::placeholder {
             color: rgba(255, 255, 255, 0.7);
+            font-weight: 500;
         }
         
         .search-icon {
             position: absolute;
-            left: 12px;
+            left: 15px;
             color: rgba(255, 255, 255, 0.7);
+            font-size: 1.1rem;
+            z-index: 2;
         }
         
         /* Search Results */
@@ -128,28 +469,31 @@
             left: 0;
             right: 0;
             background: rgba(45, 52, 54, 0.98);
-            border-radius: 10px;
-            margin-top: 5px;
-            max-height: 300px;
+            border-radius: 15px;
+            margin-top: 8px;
+            max-height: 400px;
             overflow-y: auto;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
             display: none;
             z-index: 101;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
         }
         
         .search-result-item {
-            padding: 12px 15px;
+            padding: 15px 20px;
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
             color: var(--light);
             cursor: pointer;
-            transition: background 0.2s;
+            transition: all 0.2s;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
         
         .search-result-item:hover {
             background: rgba(255, 255, 255, 0.1);
+            transform: translateX(5px);
         }
         
         .search-result-item:last-child {
@@ -157,31 +501,33 @@
         }
         
         .search-result-item img {
-            width: 40px;
-            height: 40px;
-            border-radius: 5px;
+            width: 50px;
+            height: 50px;
+            border-radius: 8px;
             object-fit: cover;
         }
         
         .search-result-item .game-info {
-            padding: 0;
+            flex: 1;
         }
         
         .search-result-item .game-title {
-            font-size: 1rem;
-            margin-bottom: 2px;
+            font-size: 1.1rem;
+            margin-bottom: 5px;
             color: var(--light);
+            font-weight: 600;
         }
         
         .search-result-item .game-category {
-            font-size: 0.8rem;
+            font-size: 0.85rem;
             color: var(--secondary);
         }
         
         .no-results {
-            padding: 15px;
+            padding: 20px;
             text-align: center;
             color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
         }
         
         /* Main Content */
@@ -201,7 +547,7 @@
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
         }
         
-        /* Games Grid */
+        /* Games Grid with Consistent Colors */
         .games-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -210,16 +556,18 @@
         }
         
         .game-card {
-            background-color:#ff6afd;
+            background: var(--card-bg);
             border-radius: 30px;
             overflow: hidden;
             box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
+            transition: transform 2s, box-shadow 0.3s;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .game-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
         }
         
         .game-img {
@@ -247,11 +595,12 @@
         .game-title {
             font-size: 1.3rem;
             margin-bottom: 0.5rem;
-            color:#91ff7f;
+            color: var(--accent);
+            font-weight: 700;
         }
         
         .game-description {
-            color: #666;
+            color: #ccc;
             margin-bottom: 1rem;
             font-size: 0.9rem;
             line-height: 1.5;
@@ -269,7 +618,7 @@
         }
         
         .game-category {
-            background-color: var(--secondary);
+            background-color: var(--primary);
             color: white;
             padding: 4px 10px;
             border-radius: 20px;
@@ -288,7 +637,7 @@
             background-color: var(--primary);
             color: white;
             border: none;
-            border-radius: 16px;
+            border-radius: 30px;
             font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
@@ -296,12 +645,12 @@
             text-align: center;
             text-decoration: none;
             margin-bottom: 0.5rem;
-            position: relative;
-            overflow: hidden;
         }
         
         .download-btn:hover {
             background-color: var(--secondary);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
         }
         
         .download-btn.secondary {
@@ -310,7 +659,8 @@
         }
         
         .download-btn.secondary:hover {
-            background-color: #e6679c;
+            background-color: #00a085;
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.4);
         }
         
         /* Button Transform Effects */
@@ -324,7 +674,7 @@
             }
             50% {
                 transform: scale(0.9);
-                background-color: #00b894;
+                background-color: var(--accent);
             }
             75% {
                 transform: scale(1.1);
@@ -346,7 +696,7 @@
             }
             50% {
                 transform: scale(0.9);
-                background-color: #6c5ce7;
+                background-color: var(--primary);
             }
             75% {
                 transform: scale(1.1);
@@ -360,7 +710,7 @@
         
         /* Footer */
         footer {
-            background-color: var(--dark);
+            background-color: rgba(0, 0, 0, 0.8);
             color: var(--light);
             padding: 3rem 2rem 2rem;
             margin-top: auto;
@@ -453,7 +803,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             z-index: 100;
             transition: transform 0.3s;
-            animation: pulse 2s infinite, spin 3s linear infinite;
+            animation: pulse 2s infinite;
             text-decoration: none;
         }
         
@@ -478,7 +828,7 @@
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             z-index: 100;
             transition: transform 0.3s;
-            animation: pulse-red 2s infinite, spin 3s linear infinite;
+            animation: pulse-red 2s infinite;
             text-decoration: none;
         }
         
@@ -491,7 +841,7 @@
             position: fixed;
             top: 100px;
             left: 25px;
-            background-color: #00b894;
+            background-color: var(--accent);
             color: white;
             width: 50px;
             height: 50px;
@@ -502,19 +852,17 @@
             font-size: 1.5rem;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
             z-index: 100;
-            transition: transform 2s;
+            transition: transform 0.3s;
             cursor: pointer;
-            animation: spin 3s linear infinite;
         }
         
         .music-float:hover {
             transform: scale(1.1);
-            animation-play-state: paused;
         }
         
         .music-float.playing {
-            background-color: #fd79a8;
-            animation: pulse-music 1.5s infinite, spin 3s linear infinite;
+            background-color: var(--primary);
+            animation: pulse-music 1.5s infinite;
         }
         
         @keyframes pulse {
@@ -535,11 +883,6 @@
             100% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0); }
         }
         
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-        
         /* Responsive */
         @media (max-width: 768px) {
             .navbar {
@@ -551,11 +894,14 @@
                 gap: 1rem;
                 width: 100%;
                 justify-content: center;
+                flex-direction: column;
             }
             
             .search-container {
                 width: 100%;
                 justify-content: center;
+                margin: 1rem 0;
+                max-width: 100%;
             }
             
             .search-box {
@@ -584,10 +930,74 @@
                 width: 45px;
                 height: 45px;
             }
+
+            .whatsapp-ai-content {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .ai-info {
+                justify-content: center;
+            }
+
+            .ai-text {
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
+    <!-- WhatsApp AI Banner -->
+    <div class="whatsapp-ai-banner">
+        <div class="whatsapp-ai-content">
+            <div class="ai-info">
+                <i class="fab fa-whatsapp"></i>
+                <div we
+                    <h3>aPLAY AI Assistant</h3>
+                    <p>Ask me anything about games, downloads, or aPLAY!</p>
+                </div>
+            </div>
+            <div class="ai-actions">
+                <button class="ai-question-btn" id="askAI">
+                    <i class="fas fa-robot"></i> Ask AI
+                </button>
+                <a href="https://chat.whatsapp.com/Lr5Zc8KjH7FLAA37ZQ8439?mode=wwt" class="whatsapp-ai-btn" target="_blank">
+                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Chat Modal -->
+    <div class="ai-chat-modal" id="aiChatModal">
+        <div class="ai-chat-container">
+            <div class="ai-chat-header">
+                <h3><i class="fab fa-playstation"></i> aPLAY AI Assistant</h3>
+                <button class="ai-close-btn" id="aiCloseBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="ai-chat-body" id="aiChatBody">
+                <div class="ai-message bot">
+                    Hello! I'm your aPLAY AI Assistant 🥳<br><br>
+                    I can help you with:
+                    <div class="ai-quick-questions">
+                        <div class="ai-quick-question" data-question="What is aPLAY?">What is aPLAY?</div>
+                        <div class="ai-quick-question" data-question="How to download games?">How to download games?</div>
+                        <div class="ai-quick-question" data-question="Game recommendations">Game recommendations</div>
+                        <div class="ai-quick-question" data-question="System requirements">System requirements</div>
+                    </div>
+                </div>
+            </div>
+            <div class="ai-chat-input">
+                <input type="text" id="aiChatInput" placeholder="Ask me about aPLAY...">
+                <button class="ai-send-btn" id="aiSendBtn">
+                    <i class="fab fa-playstation"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
     <!-- Header -->
     <header>
         <nav class="navbar">
@@ -600,7 +1010,7 @@
                 <a href="about us.html">About Us</a>
                 <div class="search-container">
                     <i class="fas fa-search search-icon"></i>
-                    <input type="text" class="search-box" placeholder="Search games...">
+                    <input type="text" class="search-box" placeholder="Search games by name or category...">
                     <div class="search-results" id="searchResults"></div>
                 </div>
             </div>
@@ -612,20 +1022,19 @@
         <h2 class="section-title">Amazing Games</h2> 
         
         <div class="games-grid" id="gamesGrid">
+            <!-- Game 1 -->
             <div class="game-card" data-title="god hand">
                 <div class="game-img">
                     <img src="hand.jpg" alt="GOD HAND" class="image-game">
                 </div>
                 <div class="game-info">
                     <h3 class="game-title">GOD HAND</h3>
-                    <p class="game-description">Be  Hero in your imaginary life with horror battle on your ways
-                    .</p>
+                    <p class="game-description">Be Hero in your imaginary life with horror battle on your ways.</p>
                     
                     <div class="game-meta">
                         <div class="game-rating">
                             <i class="fas fa-star"></i> 4.9/5
                         </div>
-                        <div class="game-size"></div>
                         <div class="game-category">Fighting</div>
                     </div>
                     
@@ -639,22 +1048,21 @@
                         </a>
                     </div>
                 </div>
-                
             </div>
             
+            <!-- Game 2 -->
             <div class="game-card" data-title="god of war">
                 <div class="game-img">
                     <img src="image.jpg" alt="GOD OF WAR" class="image-game">
                 </div>
                 <div class="game-info">
                     <h3 class="game-title">GOD OF WAR</h3>
-                    <p class="game-description">Pass on an unforgettable adventure through enchanted Warfare, ancient ruins, and mystical kingom.</p>
+                    <p class="game-description">Pass on an unforgettable adventure through enchanted Warfare, ancient ruins, and mystical kingdom.</p>
                     
                     <div class="game-meta">
                         <div class="game-rating">
                             <i class="fas fa-star"></i> 4.9/5
                         </div>
-                        <div class="game-size"></div>
                         <div class="game-category">RPG • Adventure</div>
                     </div>
                     
@@ -670,6 +1078,7 @@
                 </div>
             </div>
             
+            <!-- Game 3 -->
             <div class="game-card" data-title="bright memory infinite">
                 <div class="game-img">
                     <img src="bright.jpg" alt="BRIGHT MEMORY INFINITE" class="image-game">
@@ -694,13 +1103,14 @@
                 </div>
             </div>
             
+            <!-- Game 4 -->
             <div class="game-card" data-title="gta v" data-category="realistic">
                 <div class="game-img">
                     <img src="gtav.jpg" alt="GTA V" class="image-game">
                 </div>
                 <div class="game-info">
                     <h3 class="game-title">GTA V</h3>
-                    <p class="game-description">Experience the thrill of GTA V with realistic gameplay .</p>
+                    <p class="game-description">Experience the thrill of GTA V with realistic gameplay.</p>
                     <div class="game-meta">
                         <div class="game-rating">
                             <i class="fas fa-star"></i> 4.7/5
@@ -718,6 +1128,7 @@
                 </div>
             </div>
             
+            <!-- Game 5 -->
             <div class="game-card" data-title="tomb rider" data-category="action">
                 <div class="game-img">
                     <img src="tom.jpg" alt="TOMB RIDER" class="image-game">
@@ -739,6 +1150,7 @@
                 </div>
             </div>
             
+            <!-- Game 6 -->
             <div class="game-card" data-title="fts tz" data-category="rpg action">
                 <div class="game-img">
                     <img src="ft.jpg" alt="FTS Tz" class="image-game">
@@ -760,13 +1172,14 @@
                 </div>
             </div>
             
+            <!-- Game 7 -->
             <div class="game-card" data-title="mmaleo bus tz" data-category="horror survival">
                 <div class="game-img">
                     <img src="ma.jpg" alt="MMALEO BUS Tz">
                 </div>
                 <div class="game-info">
                     <h3 class="game-title">PINODIER BUS Tz</h3>
-                    <p class="game-description">Survive terrifying encounters in a mysterious Road filled with a lot of cars .</p>
+                    <p class="game-description">Survive terrifying encounters in a mysterious Road filled with a lot of cars.</p>
                     <div class="game-meta">
                         <div class="game-rating">
                             <i class="fas fa-star"></i> 4.7/5
@@ -781,13 +1194,14 @@
                 </div>
             </div>
             
+            <!-- Game 8 -->
             <div class="game-card" data-title="mortal combat mobile" data-category="action fps">
                 <div class="game-img">
                     <img src="gt.jpeg" alt="MORTAL Combat mobile" class="image-game">
                 </div>
                 <div class="game-info">
                     <h3 class="game-title">GTA V san andrea mode</h3>
-                    <p class="game-description">Futuristic lifestyle  with advanced Missipn cyber enhancements</p>
+                    <p class="game-description">Futuristic lifestyle with advanced Mission cyber enhancements</p>
                     
                     <div class="game-meta">
                         <div class="game-rating">
@@ -817,13 +1231,13 @@
                 </div>
             </div>
             
-            <!-- New Game Card with Two Download Buttons -->
+            <!-- Game 9 -->
             <div class="game-card" data-title="cyberpunk 2077" data-category="rpg action">
                 <div class="game-img">
                     <img src="W.jpg" alt="W.jpg" class="image-game">
                 </div>
                 <div class="game-info">
-                    <h3 class="game-title">DLS 26 </h3>
+                    <h3 class="game-title">DLS 26</h3>
                     <p class="game-description">Enjoyed football with your ultimate teams join a season Focus on your carrier.</p>
                     
                     <div class="game-meta">
@@ -846,14 +1260,14 @@
                 </div>
             </div>
             
-            <!-- New Game Card with One Download Button -->
+            <!-- Game 10 -->
             <div class="game-card" data-title="minecraft" data-category="sandbox adventure">
                 <div class="game-img">
                     <img src="EF.jpg" alt="Minecraft" class="image-game">
                 </div>
                 <div class="game-info">
                     <h3 class="game-title">eFootball PSP</h3>
-                    <p class="game-description">Build, explore and swin in this realistic-based Football Game. Create amazing Te and Win in worlds.</p>
+                    <p class="game-description">Build, explore and swim in this realistic-based Football Game. Create amazing Team and Win in worlds.</p>
                     
                     <div class="game-meta">
                         <div class="game-rating">
@@ -871,7 +1285,7 @@
                 </div>
             </div>
 
-            <!-- Spider Man Amazing 2 Game Card -->
+            <!-- Game 11 -->
             <div class="game-card" data-title="spider man amazing 2" data-category="action adventure">
                 <div class="game-img">
                     <img src="spi.jpeg" alt="Sp" class="card-image game">
@@ -884,7 +1298,6 @@
                         <div class="game-rating">
                             <i class="fas fa-star"></i> 4.8/5
                         </div>
-                        <div class="game-size"></div>
                         <div class="game-category">Action • Adventure</div>
                     </div>
                     
@@ -893,14 +1306,14 @@
                             <i class="fab fa-playstation"></i>Game File (Free)
                         </a>
                         
-                        <a href="https://www.mediafire.com/file/iixcd53h5c4zvqk/Spider-Man-2-1-2-8d.apk/file   " class="download-btn secondary" download>
+                        <a href="https://www.mediafire.com/file/iixcd53h5c4zvqk/Spider-Man-2-1-2-8d.apk/file" class="download-btn secondary" download>
                             <i class="fas fa-gamepad"></i>Game Apk
                         </a>
                     </div>
                 </div>
             </div>
             
-            <!-- COD WARFARE Game Card -->
+            <!-- Game 12 -->
             <div class="game-card" data-title="cod warfare" data-category="action fps">
                 <div class="game-img">
                     <img src="COD.jpeg" alt="COD WARFARE" class="image-game">
@@ -918,8 +1331,6 @@
                     </div>
                     
                     <div class="download-container">
-                     
-                        
                         <a href="https://www.mediafire.com/file/6fm25f39to92gjy/Call_of_Duty_-_Modern_Warfare_3_%2528USA%2529.7z/file?dkey=tfnebh3kqss&r=251" class="download-btn secondary" download>
                             <i class="fab fa-playstation"></i> Game File (Free)
                         </a>
@@ -972,7 +1383,7 @@
 
     <!-- Floating Buttons -->
     <a href="https://wa.me/255773573560" class="whatsapp-float" target="_blank">
-        <i class="fab fa-whatsapp"></i>
+        <i class="fas fa-paper-plane"></i>
     </a>
 
     <a href="https://www.youtube.com/channel/UCDP3rhGTM2MHV2j8r9J-Cmg" class="youtube-float" target="_blank">
@@ -984,7 +1395,136 @@
     </div>
 
     <script>
-        // Search functionality
+        // WhatsApp AI Banner Functionality
+        const askAIButton = document.getElementById('askAI');
+        const aiChatModal = document.getElementById('aiChatModal');
+        const aiCloseBtn = document.getElementById('aiCloseBtn');
+        const aiChatBody = document.getElementById('aiChatBody');
+        const aiChatInput = document.getElementById('aiChatInput');
+        const aiSendBtn = document.getElementById('aiSendBtn');
+
+        // AI Responses
+        const aiResponses = {
+            'hello': 'Hello! I\'m your aPLAY AI Assistant 🤖 How can I help you today?',
+            'hi': 'Hi there! 👋 Welcome to aPLAY! What would you like to know about our games?',
+            'what is aplay': 'aPLAY is your ultimate gaming destination! We provide amazing games for free download. Our collection includes action, adventure, RPG, sports, and many more game genres! 🎮',
+            'how to download': 'To download any game:\n1. Find the game you want\n2. Click the download button below the game description\n3. Follow the installation instructions\n4. Enjoy playing! 🎯\n\nAll games are completely FREE!',
+            'game recommendations': 'Based on your interests, I recommend:\n• GOD OF WAR (Action/RPG)\n• BRIGHT MEMORY INFINITE (Adventure)\n• FTS Tz (Football)\n• Spider Man Amazing 2 (Action)\n\nWhat type of games do you enjoy?',
+            'system requirements': 'Most games work on:\n• Android 5.0+ for mobile games\n• Windows 7+ for PC games\n• 2GB+ RAM recommended\n• 500MB+ free storage\n\nSpecific requirements are listed on each game page!',
+            'free': 'Yes! All games on aPLAY are completely FREE to download! No hidden costs, no subscriptions. Just pure gaming enjoyment! 💰',
+            'categories': 'We have games in these categories:\n• Action & Adventure\n• RPG & Fantasy\n• Sports & Racing\n• Fighting & FPS\n• Puzzle & Strategy\n\nUse the search to find your favorite!',
+            'contact': 'You can contact us through:\n• WhatsApp: +255 773 573 560\n• YouTube: aPLAY Channel\n• Email: support@aplay.com\n\nWe\'re here to help! 📞',
+            'thanks': 'You\'re welcome! 😊 Happy gaming! If you need anything else, just ask! 🎮',
+            'default': 'I\'m not sure I understand. Try asking me about:\n• Game downloads\n• System requirements\n• Game recommendations\n• aPLAY information\n• Contact details\n\nOr click one of the quick questions above! 🤔'
+        };
+
+        // Open AI Chat
+        askAIButton.addEventListener('click', function() {
+            aiChatModal.style.display = 'block';
+        });
+
+        // Close AI Chat
+        aiCloseBtn.addEventListener('click', function() {
+            aiChatModal.style.display = 'none';
+        });
+
+        // Close when clicking outside
+        aiChatModal.addEventListener('click', function(e) {
+            if (e.target === aiChatModal) {
+                aiChatModal.style.display = 'none';
+            }
+        });
+
+        // Quick question buttons
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('ai-quick-question')) {
+                const question = e.target.getAttribute('data-question');
+                aiChatInput.value = question;
+                sendAIMessage();
+            }
+        });
+
+        // Send message function
+        function sendAIMessage() {
+            const message = aiChatInput.value.trim().toLowerCase();
+            if (message === '') return;
+
+            // Add user message
+            addAIMessage(message, 'user');
+            aiChatInput.value = '';
+
+            // Show typing indicator
+            const typingIndicator = addAIMessage('Typing...', 'bot');
+            typingIndicator.style.fontStyle = 'italic';
+            typingIndicator.style.opacity = '0.7';
+
+            // Generate AI response
+            setTimeout(() => {
+                // Remove typing indicator
+                aiChatBody.removeChild(typingIndicator);
+                
+                let response = aiResponses.default;
+                let foundMatch = false;
+                
+                // Check for keywords in user message
+                for (const [key, value] of Object.entries(aiResponses)) {
+                    if (message.includes(key)) {
+                        response = value;
+                        foundMatch = true;
+                        break;
+                    }
+                }
+
+                addAIMessage(response, 'bot');
+                
+                // Add quick questions for certain responses
+                if (message.includes('recommend') || message.includes('game') || !foundMatch) {
+                    setTimeout(() => {
+                        const quickQuestions = document.createElement('div');
+                        quickQuestions.className = 'ai-quick-questions';
+                        quickQuestions.innerHTML = `
+                            <div class="ai-quick-question" data-question="Action games">Action games</div>
+                            <div class="ai-quick-question" data-question="Sports games">Sports games</div>
+                            <div class="ai-quick-question" data-question="Free games">Free games</div>
+                            <div class="ai-quick-question" data-question="How to download">How to download</div>
+                        `;
+                        const lastMessage = aiChatBody.lastChild;
+                        aiChatBody.insertBefore(quickQuestions, lastMessage.nextSibling);
+                    }, 100);
+                }
+            }, 1500);
+        }
+
+        // Add message to AI chat
+        function addAIMessage(text, sender) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `ai-message ${sender}`;
+            messageDiv.textContent = text;
+            aiChatBody.appendChild(messageDiv);
+            aiChatBody.scrollTop = aiChatBody.scrollHeight;
+            return messageDiv;
+        }
+
+        // Event listeners for AI chat
+        aiSendBtn.addEventListener('click', sendAIMessage);
+        aiChatInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                sendAIMessage();
+            }
+        });
+
+        // Auto-response on first open
+        let firstOpen = true;
+        askAIButton.addEventListener('click', function() {
+            if (firstOpen) {
+                setTimeout(() => {
+                    addAIMessage("Welcome to aPLAY AI Assistant! I can help you find games, answer questions about downloads, recommend games based on your interests, and provide information about aPLAY. What would you like to know?", 'bot');
+                }, 500);
+                firstOpen = false;
+            }
+        });
+
+        // Search functionality (existing code)
         const searchBox = document.querySelector('.search-box');
         const searchResults = document.getElementById('searchResults');
         const gameCards = document.querySelectorAll('.game-card');
@@ -1054,13 +1594,13 @@
             {
                 title: "Spider Man Amazing 2",
                 category: "Action • Adventure",
-                image: "spider-man.jpg",
+                image: "spi.jpeg",
                 element: document.querySelector('[data-title="spider man amazing 2"]')
             },
             {
                 title: "COD WARFARE",
                 category: "Action • FPS",
-                image: "cod.jpg",
+                image: "COD.jpeg",
                 element: document.querySelector('[data-title="cod warfare"]')
             }
         ];
@@ -1080,7 +1620,7 @@
             searchResults.innerHTML = '';
             
             if (results.length === 0) {
-                searchResults.innerHTML = '<div class="no-results">No games found</div>';
+                searchResults.innerHTML = '<div class="no-results">No games found matching your search</div>';
             } else {
                 results.forEach(game => {
                     const resultItem = document.createElement('div');
@@ -1181,26 +1721,6 @@
                 }, 600);
             });
         });
-
-        // Random background color change every 5 seconds
-        function getRandomColor() {
-            const letters = '0123456789ABCDEF';
-            let color = '#';
-            for (let i = 0; i < 6; i++) {
-                color += letters[Math.floor(Math.random() * 16)];
-            }
-            return color;
-        }
-
-        function changeBackgroundColor() {
-            const color1 = getRandomColor();
-            const color2 = getRandomColor();
-            const color3 = getRandomColor();
-            document.body.style.background = `linear-gradient(135deg, ${color1}, ${color2}, ${color3})`;
-        }
-
-        // Change background color every 5 seconds
-        setInterval(changeBackgroundColor, 5000);
 
         // Shuffle game cards every 20 seconds
         function shuffleGameCards() {
