@@ -952,7 +952,7 @@
         <div class="whatsapp-ai-content">
             <div class="ai-info">
                 <i class="fab fa-whatsapp"></i>
-                <div we
+                <div class="ai-text">
                     <h3>aPLAY AI Assistant</h3>
                     <p>Ask me anything about games, downloads, or aPLAY!</p>
                 </div>
@@ -1224,7 +1224,7 @@
                             <i class="fab fa-playstation"></i> Anderno encrypted
                         </a>
                         
-                        <a href="https://www.mediafire.com/file/uxrxzzd5y0cubof/Mali-GTA+v+style+graphics.7z/file" class="download-btn ultra-btn" download>
+                        <a href="https://www.mediafire.com/file/4pez6v3jv8g7vq8/mali-Kaarma+YT+-+Graphics.zip/file?dkey=czxtdayn53g&r=1577" class="download-btn ultra-btn" download>
                             <i class="fab fa-playstation"></i>Mali encrypted
                         </a>
                     </div>
@@ -1302,11 +1302,11 @@
                     </div>
                     
                     <div class="download-container">
-                        <a href="https://www.mediafire.com/file/18vpm5j6j5e9wmb/9030-Spider-Man-2-v1-2-8d-cache1.zip/file" class="download-btn" download>
+                        <a href="https://www.mediafire.com/file/04eqg7wh64a099x/Obb_Amazing_Spider_Man_2_-_RisTechy.com.rar/file?dkey=dw9ymdhx6up&r=1361" class="download-btn" download>
                             <i class="fab fa-playstation"></i>Game File (Free)
                         </a>
                         
-                        <a href="https://www.mediafire.com/file/iixcd53h5c4zvqk/Spider-Man-2-1-2-8d.apk/file" class="download-btn secondary" download>
+                        <a href="https://www.mediafire.com/file/g33rxqm5qhzz3gp/Spider+MaN+2+Mod+-+RisTechy.com.7z/file" class="download-btn secondary" download>
                             <i class="fas fa-gamepad"></i>Game Apk
                         </a>
                     </div>
@@ -1332,6 +1332,64 @@
                     
                     <div class="download-container">
                         <a href="https://www.mediafire.com/file/6fm25f39to92gjy/Call_of_Duty_-_Modern_Warfare_3_%2528USA%2529.7z/file?dkey=tfnebh3kqss&r=251" class="download-btn secondary" download>
+                            <i class="fab fa-playstation"></i> Game File (Free)
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 13 - FIFA 26 MOD -->
+            <div class="game-card" data-title="fifa 26 mod" data-category="football sports">
+                <div class="game-img">
+                    <img src="fifa.jpeg" alt="FIFA 26 MOD" class="image-game">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">FIFA 26 MOD</h3>
+                    <p class="game-description">Experience the ultimate football simulation with enhanced graphics, updated teams, and realistic gameplay in this amazing FIFA 26 mod.</p>
+                    
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i> 4.9/5
+                        </div>
+                        <div class="game-size">1.4 GB</div>
+                        <div class="game-category">Football • Sports</div>
+                    </div>
+                    
+                    <div class="download-container">
+                        <a href="https://www.mediafire.com/file/lrahi23ghicyk00/data.rar/file" class="download-btn" download>
+                            <i class="fas fa-download"></i> Main Game File
+                        </a>
+                        
+                        <a href="https://www.mediafire.com/file/h7bkoro46k3aope/obb.rar/file" class="download-btn secondary" download>
+                            <i class="fas fa-cogs"></i> Graphics Patch
+                        </a>
+                        
+                        <a href="https://www.mediafire.com/file/a633irr1qjx6vtl/EA_FC_MOD_26_BY_ZEOL.apk/file" class="download-btn" download>
+                            <i class="fas fa-users"></i> Updated apk
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Game 14 - DEAD TO RIGHT PSPPPP -->
+            <div class="game-card" data-title="dead to right psp" data-category="action adventure">
+                <div class="game-img">"
+                    <img src="dead.jpeg" alt="DEAD TO RIGHT PSPPPP" class="game card-image">
+                </div>
+                <div class="game-info">
+                    <h3 class="game-title">DEAD TO RIGHT PSPPPP</h3>
+                    <p class="game-description">Intense action-adventure game with thrilling combat, challenging missions, and immersive storyline for PSP emulator.</p>
+                    
+                    <div class="game-meta">
+                        <div class="game-rating">
+                            <i class="fas fa-star"></i> 4.7/5
+                        </div>
+                        <div class="game-size">100 MB</div>
+                        <div class="game-category">Action • Adventure</div>
+                    </div>
+                    
+                    <div class="download-container">
+                        <a href="https://www.mediafire.com/file/377a674hls5m492/Dead_to_Rights_-_Reckoning_%2528USA%2529.zip/file" class="download-btn secondary" download>
                             <i class="fab fa-playstation"></i> Game File (Free)
                         </a>
                     </div>
@@ -1602,6 +1660,18 @@
                 category: "Action • FPS",
                 image: "COD.jpeg",
                 element: document.querySelector('[data-title="cod warfare"]')
+            },
+            {
+                title: "FIFA 26 MOD",
+                category: "Football • Sports",
+                image: "fifa26.jpg",
+                element: document.querySelector('[data-title="fifa 26 mod"]')
+            },
+            {
+                title: "DEAD TO RIGHT PSPPPP",
+                category: "Action • Adventure",
+                image: "deadright.jpg",
+                element: document.querySelector('[data-title="dead to right psp"]')
             }
         ];
         
@@ -1682,7 +1752,7 @@
 
         // Auto-play music when page loads
         window.addEventListener('load', function() {
-            audio = new Audio('mond.mp3'); // Your local song
+            audio = new Audio('NF.mp3'); // Your local song
             audio.loop = true;
             audio.play().then(() => {
                 isPlaying = true;
