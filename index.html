@@ -1,16 +1,17 @@
 <!DOCTYPE html>
-<html lang="ar">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aPLAY Games collection</title>
+    <title>aPLAY - Ultimate Gaming Hub</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
+        /* Reset & Base */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe Ul', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
         
         :root {
@@ -20,829 +21,439 @@
             --dark: #2d3436;
             --light: #f5f6fa;
             --dark-bg: linear-gradient(135deg, #1a1a2e, #16213e, #0f3460);
-            --card-bg: rgba(255, 255, 255, 0.1);
         }
         
         body {
-            background:yellow;
+            background: var(--dark-bg);
             color: var(--light);
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            position: relative;
+            padding-bottom: 100px;
+            overflow-x: hidden;
         }
         
-        /* WhatsApp AI Banner */
-        .whatsapp-ai-banner {
-            background: linear-gradient(135deg, #25D366, #128C7E, #075E54);
-            color: white;
-            padding: 15px 20px;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            animation: neonBorderGlow 3s infinite alternate;
-            margin: 0;
-            border-bottom: 2px solid transparent;
-        }
-
-        .whatsapp-ai-banner::before {
-            content: '';
-            position: absolute;
-            top: -5px;
-            left: -5px;
-            right: -5px;
-            bottom: -5px;
-            background: linear-gradient(45deg, #25D366, #128C7E, #075E54, #25D366, #128C7E);
-            z-index: -1;
-            filter: blur(15px);
-            opacity: 0.7;
-            animation: rotate 10s linear infinite;
-        }
-
-        @keyframes neonBorderGlow {
-            0% {
-                box-shadow: 
-                    0 0 5px #25D366,
-                    0 0 10px #128C7E,
-                    0 0 15px #075E54;
-                border-color: #25D366;
-            }
-            33% {
-                box-shadow: 
-                    0 0 10px #128C7E,
-                    0 0 20px #075E54,
-                    0 0 30px #25D366;
-                border-color: #128C7E;
-            }
-            66% {
-                box-shadow: 
-                    0 0 15px #075E54,
-                    0 0 30px #25D366,
-                    0 0 45px #128C7E;
-                border-color: #075E54;
-            }
-            100% {
-                box-shadow: 
-                    0 0 20px #25D366,
-                    0 0 40px #128C7E,
-                    0 0 60px #075E54;
-                border-color: #25D366;
-            }
-        }
-
-        @keyframes rotate {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        .whatsapp-ai-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-
-        .ai-info {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            flex: 1;
-        }
-
-        .ai-info i {
-            font-size: 1.8rem;
-            animation: bounce 2s infinite;
-        }
-
-        .ai-text {
-            text-align: left;
-        }
-
-        .ai-text h3 {
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-            font-weight: 700;
-        }
-
-        .ai-text p {
-            font-size: 0.9rem;
-            opacity: 0.9;
-            margin: 0;
-        }
-
-        .ai-actions {
-            display: flex;
-            gap: 10px;
-            align-items: center;
-        }
-
-        .ai-question-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: 1px solid rgba(255, 255, 255, 0.3);
-            color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .ai-question-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translateY(-2px);
-        }
-
-        .whatsapp-ai-btn {
-            background: white;
-            color: #25D366;
-            padding: 8px 20px;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: 700;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-        }
-
-        .whatsapp-ai-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-        }
-
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-5px);}
-            60% {transform: translateY(-3px);}
-        }
-
-        /* AI Chat Modal */
-        .ai-chat-modal {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.8);
-            z-index: 1000;
-            backdrop-filter: blur(5px);
-        }
-
-        .ai-chat-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 90%;
-            max-width: 500px;
-            background: white;
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-            <!-- animation: modalAppear 0.3s ease; -->
-        }
-
-        @keyframes modalAppear {
-            from {
-                opacity: 0;
-                transform: translate(-50%, -60%);
-            }
-            to {
-                opacity: 1;
-                transform: translate(-50%, -50%);
-            }
-        }
-
-        .ai-chat-header {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
-            padding: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .ai-chat-header h3 {
-            margin: 0;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .ai-close-btn {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            font-size: 1.2rem;
-            cursor: pointer;
-            padding: 8px;
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.2s;
-        }
-
-        .ai-close-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(90deg);
-        }
-
-        .ai-chat-body {
-            padding: 20px;
-            max-height: 400px;
-            overflow-y: auto;
-            background: #f8f9fa;
-        }
-
-        .ai-message {
-            margin-bottom: 15px;
-            padding: 12px 16px;
-            border-radius: 18px;
-            max-width: 85%;
-            word-wrap: break-word;
-            line-height: 1.4;
-        }
-
-        .ai-message.bot {
-            background:black;
-            border-bottom-left-radius: 5px;
-            align-self: flex-start;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-            border: 1px solid #e0e0e0;
-        }
-
-        .ai-message.user {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
-            border-bottom-right-radius: 5px;
-            align-self: flex-end;
-            margin-left: auto;
-        }
-
-        .ai-quick-questions {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .ai-quick-question {
-            background: rgba(37, 211, 102, 0.1);
-            border: 1px solid rgba(37, 211, 102, 0.2);
-            color:pink;
-            padding: 6px 12px;
-            border-radius: 15px;
-            font-size: 0.8rem;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .ai-quick-question:hover {
-            background: rgba(37, 211, 102, 0.2);
-            transform: translateY(-2px);
-        }
-
-        .ai-chat-input {
-            padding: 15px;
-            border-top: 1px solid #e0e0e0;
-            display: flex;
-            gap: 10px;
-            background: white;
-        }
-
-        .ai-chat-input input {
-            flex: 1;
-            padding: 12px 18px;
-            border: 1px solid #ddd;
-            border-radius: 25px;
-            outline: none;
-            font-size: 0.9rem;
-        }
-
-        .ai-chat-input input:focus {
-            border-color: #25D366;
-        }
-
-        .ai-send-btn {
-            background: linear-gradient(135deg, #25D366, #128C7E);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 45px;
-            height: 45px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.3s;
-        }
-
-        .ai-send-btn:hover {
-            transform: scale(1.05);
-        }
-
         /* Header */
         header {
-            background-color: rgba(0, 0, 0, 0.8);
-            padding: 1rem 2rem;
+            background: rgba(0, 0, 0, 0.9);
+            padding: 15px 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(10px);
-        }
-        
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
         }
         
         .logo {
             display: flex;
             align-items: center;
             gap: 10px;
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #ff0080, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
         }
         
         .logo i {
-            color: var(--accent);
-            font-size: 2.2rem;
+            color: #ff0080;
         }
         
-        .logo h1 {
-            color: var(--light);
-            font-size: 1.8rem;
-            font-weight: 700;
-        }
-        
-        .nav-links {
+        nav ul {
             display: flex;
-            gap: 2rem;
-            align-items: center;
+            list-style: none;
+            gap: 30px;
         }
         
-        .nav-links a {
-            color: var(--light);
+        nav ul li a {
+            color: #fff;
             text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-            padding: 0.5rem 1rem;
-            border-radius: 4px;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.2s;
+            padding: 8px 15px;
+            border-radius: 5px;
         }
         
-        .nav-links a:hover {
-            color: var(--accent);
-            background-color: rgba(255, 255, 255, 0.1);
+        nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ff8c00;
         }
         
-        /* Enhanced Search Box with Consistent Glow */
+        /* Search Box with Glow */
         .search-container {
             position: relative;
-            display: flex;
-            align-items: center;
-            flex: 1;
-            max-width: 500px;
-            margin: 0 2rem;
         }
         
         .search-box {
-            background: rgba(255, 255, 255, 0.1);
-            border: 2px solid rgba(255, 255, 255, 0.2);
+            padding: 12px 20px;
+            padding-left: 45px;
             border-radius: 30px;
-            padding: 0.7rem 1rem 0.7rem 3rem;
-            color: var(--light);
+            border: 2px solid transparent;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
             font-size: 1rem;
-            width: 100%;
-            transition: all 0.4s ease;
-            box-shadow: 0 0 0 rgba(0, 184, 148, 0);
+            width: 250px;
+            transition: all 0.3s;
+            outline: none;
         }
         
         .search-box:focus {
-            outline: none;
-            border-color: var(--accent);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 20px rgba(0, 184, 148, 0.4);
-            animation: searchPulse 2s infinite;
+            border-color: #ff0080;
+            box-shadow: 0 0 15px rgba(255, 0, 128, 0.7);
+            animation: searchGlow 1.5s infinite alternate;
+            width: 300px;
         }
         
-        @keyframes searchPulse {
-            0% {
-                box-shadow: 0 0 10px rgba(0, 184, 148, 0.4);
-            }
-            50% {
-                box-shadow: 0 0 20px rgba(0, 184, 148, 0.6);
-            }
-            100% {
-                box-shadow: 0 0 10px rgba(0, 184, 148, 0.4);
-            }
+        @keyframes searchGlow {
+            from { box-shadow: 0 0 10px rgba(255, 0, 128, 0.7); }
+            to { box-shadow: 0 0 20px rgba(255, 140, 0, 0.9), 0 0 30px rgba(255, 0, 128, 0.7); }
         }
         
-        .search-box::placeholder {
-            color: rgba(255, 255, 255, 0.7);
-            font-weight: 500;
-        }
-        
-        .search-icon {
+        .search-container i {
             position: absolute;
             left: 15px;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1.1rem;
-            z-index: 2;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #aaa;
         }
         
-        /* Search Results */
-        .search-results {
-            position: absolute;
-            top: 100%;
-            left: 0;
-            right: 0;
-            background: rgba(45, 52, 54, 0.98);
-            border-radius: 15px;
-            margin-top: 8px;
-            max-height: 400px;
-            overflow-y: auto;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.4);
-            display: none;
-            z-index: 101;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-        }
-        
-        .search-result-item {
-            padding: 15px 20px;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            color: var(--light);
-            cursor: pointer;
-            transition: all 0.2s;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .search-result-item:hover {
-            background: rgba(255, 255, 255, 0.1);
-            transform: translateX(5px);
-        }
-        
-        .search-result-item:last-child {
-            border-bottom: none;
-        }
-        
-        .search-result-item img {
-            width: 50px;
-            height: 50px;
-            border-radius: 8px;
-            object-fit: cover;
-        }
-        
-        .search-result-item .game-info {
-            flex: 1;
-        }
-        
-        .search-result-item .game-title {
-            font-size: 1.1rem;
-            margin-bottom: 5px;
-            color: var(--light);
-            font-weight: 600;
-        }
-        
-        .search-result-item .game-category {
-            font-size: 0.85rem;
-            color: var(--secondary);
-        }
-        
-        .no-results {
-            padding: 20px;
+        /* Hero */
+        .hero {
             text-align: center;
-            color: rgba(255, 255, 255, 0.7);
-            font-size: 1rem;
+            padding: 60px 5% 40px;
         }
         
-        /* Main Content */
-        .main-content {
-            flex: 1;
-            padding: 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
-            width: 100%;
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            background: linear-gradient(to right, #ff0080, #ff8c00);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 30px;
+            color: #ccc;
+            line-height: 1.6;
+        }
+        
+        /* Games */
+        .games-section {
+            padding: 30px 5%;
         }
         
         .section-title {
+            font-size: 2.2rem;
+            margin-bottom: 30px;
             text-align: center;
-            margin-bottom: 2rem;
-            color: white;
-            font-size: 2.5rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            color: #fff;
+            position: relative;
+            padding-bottom: 15px;
         }
         
-        /* Games Grid with Consistent Colors */
-        .games-grid {
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 150px;
+            height: 4px;
+            background: linear-gradient(to right, #ff0080, #ff8c00);
+            border-radius: 2px;
+        }
+        
+        .games-container {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 2rem;
-            margin-bottom: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
         }
         
         .game-card {
-            background:black;
-            border-radius: 60px;
+            background: rgba(20, 20, 40, 0.7);
+            border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-            transition: transform 2s, box-shadow 0.3s;
-            backdrop-filter: blur(10px);
+            transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
         .game-card:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 15px 30px rgba(255, 0, 128, 0.2);
+            border-color: rgba(255, 0, 128, 0.3);
         }
         
         .game-img {
+            width: 100%;
             height: 200px;
-            width: 100%;
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .game-img img {
-            width: 100%;
-            height: 100%;
             object-fit: cover;
-            transition: transform 2s ease;
+            border-bottom: 3px solid #ff0080;
         }
         
-        .game-card:hover .game-img img {
-            transform: scale(1.1);
-        }
-        
-        .game-info {
-            padding: 1.5rem;
+        .game-content {
+            padding: 20px;
         }
         
         .game-title {
-            font-size: 1.3rem;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-            font-weight: 700;
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #fff;
         }
         
         .game-description {
-            color: #ccc;
-            margin-bottom: 1rem;
-            font-size: 0.9rem;
+            color: #aaa;
+            margin-bottom: 15px;
             line-height: 1.5;
+            font-size: 0.95rem;
         }
         
         .game-meta {
             display: flex;
             justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
+            color: #ff8c00;
+            font-size: 0.9rem;
+            flex-wrap: wrap;
+            gap: 10px;
         }
         
-        .game-rating {
-            color: #fdcb6e;
+        .game-meta span {
+            display: flex;
+            align-items: center;
+            gap: 5px;
         }
         
         .game-category {
-            background-color: var(--primary);
+            background: rgba(108, 92, 231, 0.3);
             color: white;
             padding: 4px 10px;
             border-radius: 20px;
             font-size: 0.8rem;
         }
         
-        /* Download Button Container */
+        /* Download Buttons */
         .download-container {
-            margin-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
         }
         
         .download-btn {
             display: block;
             width: 100%;
             padding: 12px;
-            background-color: var(--primary);
+            background: linear-gradient(to right, #ff0080, #ff8c00);
             color: white;
             border: none;
-            border-radius: 30px;
-            font-size: 1rem;
+            border-radius: 8px;
             font-weight: 600;
+            font-size: 1rem;
             cursor: pointer;
-            transition: all 2s ease;
+            transition: all 0.2s;
             text-align: center;
             text-decoration: none;
-            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
         }
         
         .download-btn:hover {
-            background-color: var(--secondary);
+            background: linear-gradient(to right, #ff8c00, #ff0080);
             transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4);
+            box-shadow: 0 5px 15px rgba(255, 0, 128, 0.4);
         }
         
         .download-btn.secondary {
-            background-color: var(--accent);
-            margin-top: 0.5rem;
+            background: linear-gradient(to right, #00b894, #00a085);
         }
         
         .download-btn.secondary:hover {
-            background-color: #00a085;
+            background: linear-gradient(to right, #00a085, #00b894);
             box-shadow: 0 5px 15px rgba(0, 184, 148, 0.4);
         }
         
-        /* Button Transform Effects */
-        .download-btn.clicked {
-            animation: buttonTransform 2s ease;
+        /* Floating Buttons */
+        .floating-buttons {
+            position: fixed;
+            bottom: 30px;
+            left: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 99;
         }
         
-        @keyframes buttonTransform {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(0.9);
-                background-color: var(--accent);
-            }
-            75% {
-                transform: scale(1.1);
-                box-shadow: 0 0 20px rgba(0, 184, 148, 0.5);
-            }
-            100% {
-                transform: scale(1);
-                background-color: var(--primary);
-            }
+        .float-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            transition: all 0.2s;
+            position: relative;
+            animation: floatAnimation 3s ease-in-out infinite;
+            text-decoration: none;
         }
         
-        .download-btn.secondary.clicked {
-            animation: buttonTransformSecondary 0.6s ease;
+        .youtube-btn {
+            background: #FF0000;
+            animation-delay: 0s;
         }
         
-        @keyframes buttonTransformSecondary {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-                transform: scale(0.9);
-                background-color: var(--primary);
-            }
-            75% {
-                transform: scale(1.1);
-                box-shadow: 0 0 20px rgba(108, 92, 231, 0.5);
-            }
-            100% {
-                transform: scale(1);
-                background-color: var(--accent);
-            }
+        .whatsapp-btn {
+            background: #25D366;
+            animation-delay: 0.5s;
+        }
+        
+        .music-btn {
+            background: linear-gradient(45deg, #ff0080, #00ccff);
+            animation-delay: 1s;
+        }
+        
+        @keyframes floatAnimation {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .float-btn:hover {
+            transform: scale(1.1);
+        }
+        
+        .music-btn.playing {
+            animation: floatAnimation 3s ease-in-out infinite, pulseGlow 1.5s infinite alternate;
+        }
+        
+        @keyframes pulseGlow {
+            0% { box-shadow: 0 0 10px rgba(255, 0, 128, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(0, 204, 255, 0.8); }
+        }
+        
+        /* AI Assistant */
+        .ai-assistant {
+            background: rgba(30, 30, 60, 0.9);
+            border-radius: 15px;
+            padding: 25px;
+            margin: 50px 5% 30px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(0, 204, 255, 0.3);
+        }
+        
+        .ai-title {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.8rem;
+            margin-bottom: 20px;
+            color: #00ccff;
+        }
+        
+        .ai-stats {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-bottom: 25px;
+        }
+        
+        .stat-box {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 10px;
+            flex: 1;
+            min-width: 200px;
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #00ffaa;
+            display: block;
+        }
+        
+        .stat-label {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        .ai-chat {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+        }
+        
+        .ai-message {
+            background: rgba(0, 204, 255, 0.2);
+            padding: 10px 15px;
+            border-radius: 10px;
+            margin-bottom: 10px;
+            border-left: 4px solid #00ccff;
+        }
+        
+        .ai-input-container {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .ai-input {
+            flex: 1;
+            padding: 12px 15px;
+            border-radius: 30px;
+            border: none;
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            outline: none;
+        }
+        
+        .ai-send {
+            background: #00ccff;
+            color: white;
+            border: none;
+            border-radius: 30px;
+            padding: 0 25px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .ai-send:hover {
+            background: #0088cc;
         }
         
         /* Footer */
         footer {
-            background-color: rgba(0, 0, 0, 0.8);
-            color: var(--light);
-            padding: 3rem 2rem 2rem;
-            margin-top: auto;
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-        
-        .footer-section {
-            flex: 1;
-            min-width: 250px;
-            margin-bottom: 2rem;
-        }
-        
-        .footer-section h3 {
-            color: var(--accent);
-            margin-bottom: 1.5rem;
-            font-size: 1.3rem;
-        }
-        
-        .footer-links {
-            list-style: none;
-        }
-        
-        .footer-links li {
-            margin-bottom: 0.8rem;
-        }
-        
-        .footer-links a {
-            color: var(--light);
-            text-decoration: none;
-            transition: color 0.3s;
-        }
-        
-        .footer-links a:hover {
-            color: var(--accent);
+            background: rgba(0, 0, 0, 0.9);
+            padding: 40px 5% 20px;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
         }
         
         .social-links {
             display: flex;
-            gap: 1rem;
-            margin-top: 1rem;
-        }
-        
-        .social-links a {
-            display: flex;
-            align-items: center;
             justify-content: center;
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            color: var(--light);
-            font-size: 1.2rem;
-            transition: all 0.3s;
+            gap: 30px;
+            margin-bottom: 30px;
         }
         
-        .social-links a:hover {
-            background-color: var(--accent);
-            transform: translateY(-5px);
-        }
-        
-        .footer-bottom {
-            text-align: center;
-            padding-top: 2rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            margin-top: 2rem;
-            color: rgba(255, 255, 255, 0.7);
-        }
-        
-        /* Floating Buttons */
-        .whatsapp-float {
-            position: fixed;
-            bottom: 25px;
-            right: 25px;
-            background-color: #25D366;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            z-index: 100;
-            transition: transform 0.3s;
-            animation: pulse 2s infinite;
-            text-decoration: none;
-        }
-        
-        .whatsapp-float:hover {
-            transform: scale(1.1);
-            animation-play-state: paused;
-        }
-        
-        .youtube-float {
-            position: fixed;
-            bottom: 100px;
-            right: 25px;
-            background-color: #FF0000;
-            color: white;
-            width: 60px;
-            height: 60px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            z-index: 100;
-            transition: transform 0.3s;
-            animation: pulse-red 2s infinite;
-            text-decoration: none;
-        }
-        
-        .youtube-float:hover {
-            transform: scale(1.1);
-            animation-play-state: paused;
-        }
-        
-        .music-float {
-            position: fixed;
-            top: 100px;
-            left: 25px;
-            background-color: var(--accent);
-            color: white;
+        .social-icon {
             width: 50px;
             height: 50px;
             border-radius: 50%;
@@ -850,376 +461,251 @@
             align-items: center;
             justify-content: center;
             font-size: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-            z-index: 100;
-            transition: transform 0.3s;
-            cursor: pointer;
+            color: white;
+            transition: all 0.2s;
+            text-decoration: none;
         }
         
-        .music-float:hover {
-            transform: scale(1.1);
+        .tiktok { background: #000000; }
+        .instagram { background: #E1306C; }
+        .telegram { background: #0088cc; }
+        .facebook { background: #1877F2; }
+        
+        .social-icon:hover {
+            transform: translateY(-5px) scale(1.1);
         }
         
-        .music-float.playing {
-            background-color: var(--primary);
-            animation: pulse-music 1.5s infinite;
-        }
-        
-        @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
-        }
-        
-        @keyframes pulse-red {
-            0% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.7); }
-            70% { box-shadow: 0 0 0 10px rgba(255, 0, 0, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(255, 0, 0, 0); }
-        }
-        
-        @keyframes pulse-music {
-            0% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0.7); }
-            70% { box-shadow: 0 0 0 8px rgba(0, 184, 148, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(0, 184, 148, 0); }
+        .copyright {
+            text-align: center;
+            color: #aaa;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            font-size: 0.9rem;
         }
         
         /* Responsive */
+        @media (max-width: 992px) {
+            header { flex-direction: column; gap: 20px; }
+            nav ul { gap: 15px; flex-wrap: wrap; justify-content: center; }
+            .search-box { width: 100%; max-width: 400px; }
+            .search-box:focus { width: 100%; }
+            .hero h1 { font-size: 2.5rem; }
+            .floating-buttons { left: 20px; bottom: 20px; }
+        }
+        
         @media (max-width: 768px) {
-            .navbar {
-                flex-direction: column;
-                gap: 1rem;
-            }
-            
-            .nav-links {
-                gap: 1rem;
-                width: 100%;
-                justify-content: center;
-                flex-direction: column;
-            }
-            
-            .search-container {
-                width: 100%;
-                justify-content: center;
-                margin: 1rem 0;
-                max-width: 100%;
-            }
-            
-            .search-box {
-                width: 100%;
-            }
-            
-            .search-box:focus {
-                width: 100%;
-            }
-            
-            .games-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-            }
-            
-            .footer-section {
-                min-width: 100%;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .music-float {
-                top: 90px;
-                left: 15px;
-                width: 45px;
-                height: 45px;
-            }
-
-            .whatsapp-ai-content {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .ai-info {
-                justify-content: center;
-            }
-
-            .ai-text {
-                text-align: center;
-            }
+            .games-container { grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); }
+            .ai-stats { flex-direction: column; }
+            .floating-buttons { bottom: 15px; left: 15px; }
+            .float-btn { width: 50px; height: 50px; font-size: 1.2rem; }
+            .hero h1 { font-size: 2rem; }
+            .social-links { gap: 20px; }
+            .games-container { gap: 20px; }
+        }
+        
+        @media (max-width: 480px) {
+            .games-container { grid-template-columns: 1fr; }
+            .social-links { gap: 15px; }
+            .social-icon { width: 40px; height: 40px; font-size: 1.2rem; }
+            .floating-buttons { bottom: 10px; left: 10px; gap: 10px; flex-direction: row; left: 50%; transform: translateX(-50%); }
+            .float-btn { width: 45px; height: 45px; font-size: 1rem; }
         }
     </style>
 </head>
 <body>
-    <!-- WhatsApp AI Banner -->
-    <div class="whatsapp-ai-banner">
-        <div class="whatsapp-ai-content">
-            <div class="ai-info">
-                <i class="fab fa-whatsapp"></i>
-                <div class="ai-text">
-                    <h3>aPLAY AI Assistant</h3>
-                    <p>Ask me anything about games, downloads, or aPLAY!</p>
-                </div>
-            </div>
-            <div class="ai-actions">
-                <button class="ai-question-btn" id="askAI">
-                    <i class="fas fa-robot"></i> Ask AI
-                </button>
-                <a href="https://chat.whatsapp.com/F4WqQMAdkVyAfZkeIpkat5" class="whatsapp-ai-btn" target="_blank">
-                    <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-                </a>
-            </div>
-        </div>
-    </div>
-
-    <!-- AI Chat Modal -->
-    <div class="ai-chat-modal" id="aiChatModal">
-        <div class="ai-chat-container">
-            <div class="ai-chat-header">
-                <h3><i class="fab fa-playstation"></i> aPLAY AI Assistant</h3>
-                <button class="ai-close-btn" id="aiCloseBtn">
-                    <i class="fas fa-times"></i>
-                </button>
-            </div>
-            <div class="ai-chat-body" id="aiChatBody">
-                <div class="ai-message bot">
-                    Hello! I'm your aPLAY AI Assistant 🥳<br><br>
-                    I can help you with:
-                    <div class="ai-quick-questions">
-                        <div class="ai-quick-question" data-question="What is aPLAY?">What is aPLAY?</div>
-                        <div class="ai-quick-question" data-question="How to download games?">How to download games?</div>
-                        <div class="ai-quick-question" data-question="Game recommendations">Game recommendations</div>
-                        <div class="ai-quick-question" data-question="System requirements">System requirements</div>
-                    </div>
-                </div>
-            </div>
-            <div class="ai-chat-input">
-                <input type="text" id="aiChatInput" placeholder="Ask me about aPLAY...">
-                <button class="ai-send-btn" id="aiSendBtn">
-                    <i class="fab fa-playstation"></i>
-                </button>
-            </div>
-        </div>
-    </div>
-
     <!-- Header -->
     <header>
-        <nav class="navbar">
-            <div class="logo">
-                <i class="fab fa-playstation"></i>
-                <h1>aPLAY</h1>
-            </div>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="about us.html">About Us</a>
-                <div class="search-container">
-                    <i class="fas fa-search search-icon"></i>
-                    <input type="text" class="search-box" placeholder="Search games by name or category...">
-                    <div class="search-results" id="searchResults"></div>
-                </div>
-            </div>
+        <div class="logo">
+            <i class="fas fa-gamepad"></i>
+            <span>aPLAY</span>
+        </div>
+        
+        <nav>
+            <ul>
+                <li><a href="#home"><i class="fas fa-home"></i> Home</a></li>
+                <li><a href="#games"><i class="fas fa-gamepad"></i> Games</a></li>
+                <li><a href="about.html"><i class="fas fa-info-circle"></i> About</a></li>
+                <li><a href="#ai"><i class="fas fa-robot"></i> AI Assistant</a></li>
+            </ul>
         </nav>
+        
+        <div class="search-container">
+            <i class="fas fa-search"></i>
+            <input type="text" class="search-box" placeholder="Search games...">
+        </div>
     </header>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <h2 class="section-title">Amazing Games</h2> 
-        
-        <div class="games-grid" id="gamesGrid">
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <h1>Welcome to aPLAY Gaming Hub</h1>
+        <p>Discover and download amazing games for free. Our collection offers the best gaming experience for mobile and PC platforms.</p>
+    </section>
+
+    <!-- Games -->
+    <section class="games-section" id="games">
+        <h2 class="section-title">Featured Games</h2>
+        <div class="games-container">
             <!-- Game 1 -->
-<div class="game-card" data-title="god hand">
-                <div class="game-img">
-                    <img src="hand.jpg" alt="GOD HAND" class="image-game">
-                </div>
-                <div class="game-info">
+            <div class="game-card">
+                <img src="hand.jpg" alt="GOD HAND" class="game-img">
+                <div class="game-content">
                     <h3 class="game-title">GOD HAND</h3>
                     <p class="game-description">Be Hero in your imaginary life with horror battle on your ways.</p>
-                    
                     <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.9/5
-                        </div>
-                        <div class="game-category">Fighting</div>
+                        <span><i class="fas fa-star"></i> 4.9/5</span>
+                        <span><i class="fas fa-download"></i> 2.4 GB</span>
+                        <span class="game-category">Fighting</span>
                     </div>
-                    
-                                <div class="download-container">
-                        <a href="https://www.mediafire.com/file/fhyh2jtzk4rk1rb/AetherSX2-v1.5-4248-Aethersx2apk.com.apk/file" class="download-btn free-btn" download>
-                            <i class="fas fa-gamepad"></i>Console
+                    <div class="download-container">
+                        <a href="https://www.mediafire.com/file/fhyh2jtzk4rk1rb/AetherSX2-v1.5-4248-Aethersx2apk.com.apk/file" class="download-btn" download>
+                            <i class="fas fa-gamepad"></i> Console
                         </a>
-                        
-                        <a href="https://www.mediafire.com/file/9gefs9uyr0o5co7/GOD_HAND_HACK_EDITION.iso/file" class="download-btn premium-btn" download>
-                            <i class="fab fa-playstation"></i> Game file Free
+                        <a href="https://www.mediafire.com/file/9gefs9uyr0o5co7/GOD_HAND_HACK_EDITION.iso/file" class="download-btn secondary" download>
+                            <i class="fab fa-playstation"></i> Game File
                         </a>
                     </div>
                 </div>
             </div>
             
             <!-- Game 2 -->
-            <div class="game-card" data-title="god of war">
-                <div class="game-img">
-                    <img src="image.jpg" alt="GOD OF WAR" class="image-game">
-                </div>
-                <div class="game-info">
+            <div class="game-card">
+                <img src="image.jpg" alt="GOD OF WAR" class="game-img">
+                <div class="game-content">
                     <h3 class="game-title">GOD OF WAR</h3>
-                    <p class="game-description">Pass on an unforgettable adventure through enchanted Warfare, ancient ruins, and mystical kingdom.</p>
-                    
+                    <p class="game-description">Pass on an unforgettable adventure through enchanted Warfare.</p>
                     <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.9/5
-                        </div>
-                        <div class="game-category">RPG • Adventure</div>
+                        <span><i class="fas fa-star"></i> 4.9/5</span>
+                        <span><i class="fas fa-download"></i> 3.1 GB</span>
+                        <span class="game-category">RPG • Adventure</span>
                     </div>
-                    
                     <div class="download-container">
-                        <a href="https://www.mediafire.com/file/fhyh2jtzk4rk1rb/AetherSX2-v1.5-4248-Aethersx2apk.com.apk/file" class="download-btn free-btn" download>
+                        <a href="https://www.mediafire.com/file/fhyh2jtzk4rk1rb/AetherSX2-v1.5-4248-Aethersx2apk.com.apk/file" class="download-btn" download>
                             <i class="fas fa-gamepad"></i> Console
                         </a>
-                        
-                        <a href="https://www.mediafire.com/file/zsj8ckt6ftdlhrq/God_of_War_1_Vampire_Edition.iso/file" class="download-btn premium-btn" download>
-                            <i class="fab fa-playstation"></i> Game File Free
+                        <a href="https://www.mediafire.com/file/zsj8ckt6ftdlhrq/God_of_War_1_Vampire_Edition.iso/file" class="download-btn secondary" download>
+                            <i class="fab fa-playstation"></i> Game File
                         </a>
                     </div>
                 </div>
             </div>
             
             <!-- Game 3 -->
-            <div class="game-card" data-title="bright memory infinite">
-                <div class="game-img">
-                    <img src="bright.jpg" alt="BRIGHT MEMORY INFINITE" class="image-game">
-                </div>
-                <div class="game-info">
+            <div class="game-card">
+                <img src="bright.jpg" alt="BRIGHT MEMORY INFINITE" class="game-img">
+                <div class="game-content">
                     <h3 class="game-title">BRIGHT MEMORY INFINITE</h3>
-                    <p class="game-description">Embark on an unforgettable adventure through enchanted forests, ancient ruins, and mystical kingdoms in this epic RPG masterpiece.</p>
-                    
+                    <p class="game-description">Embark on an unforgettable adventure through enchanted forests.</p>
                     <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.9/5
-                        </div>
-                        <div class="game-size">2.20 GB</div>
-                        <div class="game-category">RPG • Adventure</div>
+                        <span><i class="fas fa-star"></i> 4.9/5</span>
+                        <span><i class="fas fa-download"></i> 2.2 GB</span>
+                        <span class="game-category">RPG • Adventure</span>
                     </div>
-                    
                     <div class="download-container">
-                        <a href="https://www.mediafire.com/file/ghlrxx9796q3w7g/bright-memory-infinite-1.31-mod-menu-5play.apk/file" class="download-btn premium-btn" download>
-                            <i class="fab fa-playstation"></i>Game File (Free)
+                        <a href="https://www.mediafire.com/file/ghlrxx9796q3w7g/bright-memory-infinite-1.31-mod-menu-5play.apk/file" class="download-btn" download>
+                            <i class="fab fa-playstation"></i> Download
                         </a>
                     </div>
                 </div>
             </div>
             
             <!-- Game 4 -->
-            <div class="game-card" data-title="gta v" data-category="realistic">
-                <div class="game-img">
-                    <img src="gtav.jpg" alt="GTA V" class="image-game">
-                </div>
-                <div class="game-info">
+            <div class="game-card">
+                <img src="gtav.jpg" alt="GTA V" class="game-img">
+                <div class="game-content">
                     <h3 class="game-title">GTA V</h3>
                     <p class="game-description">Experience the thrill of GTA V with realistic gameplay.</p>
                     <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.7/5
-                        </div>
-                        <div class="game-category">Realistic</div>
+                        <span><i class="fas fa-star"></i> 4.7/5</span>
+                        <span><i class="fas fa-download"></i> 4.5 GB</span>
+                        <span class="game-category">Realistic</span>
                     </div>
                     <div class="download-container">
                         <a href="#" class="download-btn" download>
-                            <i class="fas fa-gamepad"></i>Game hub(Not yet)
+                            <i class="fas fa-gamepad"></i> Coming Soon
                         </a>
                         <a href="#" class="download-btn secondary" download>
-                            <i class="fab fa-playstation"></i> Game file Free(Not Yet)
+                            <i class="fab fa-playstation"></i> Coming Soon
                         </a>
                     </div>
                 </div>
             </div>
             
             <!-- Game 5 -->
-            <div class="game-card" data-title="tomb rider" data-category="action">
-                <div class="game-img">
-                    <img src="tom.jpg" alt="TOMB RIDER" class="image-game">
-                </div>
-                <div class="game-info">
+            <div class="game-card">
+                <img src="tom.jpg" alt="TOMB RIDER" class="game-img">
+                <div class="game-content">
                     <h3 class="game-title">TOMB RIDER</h3>
-                    <p class="game-description">Engage war and rescue people from violence in different world sides.</p>
+                    <p class="game-description">Engage war and rescue people from violence.</p>
                     <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fab fa-playstation"></i> 4.5/5
-                        </div>
-                        <div class="game-category">Action</div>
+                        <span><i class="fab fa-playstation"></i> 4.5/5</span>
+                        <span><i class="fas fa-download"></i> 1.8 GB</span>
+                        <span class="game-category">Action</span>
                     </div>
                     <div class="download-container">
                         <a href="https://www.mediafire.com/file/fyljdncqwdugwik/Tomb+Raider+-+Anniversary+(USA)+(PSP)+(PSN).zip/file" class="download-btn secondary" download>
-                            <i class="fab fa-youtube"></i> Pin is on Youtube
+                            <i class="fab fa-youtube"></i> Watch on YouTube
                         </a>
                     </div>
                 </div>
             </div>
             
             <!-- Game 6 -->
-            <div class="game-card" data-title="fts tz" data-category="rpg action">
-                <div class="game-img">
-                    <img src="ft.jpg" alt="FTS Tz" class="image-game">
-                </div>
-                <div class="game-info">
+            <div class="game-card">
+                <img src="ft.jpg" alt="FTS Tz" class="game-img">
+                <div class="game-content">
                     <h3 class="game-title">FTS Tz</h3>
-                    <p class="game-description">Enjoy Football feeling with your favorite Africans Teams</p>
+                    <p class="game-description">Enjoy Football feeling with your favorite African Teams.</p>
                     <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.3/5
-                        </div>
-                        <div class="game-category">Football</div>
+                        <span><i class="fas fa-star"></i> 4.3/5</span>
+                        <span><i class="fas fa-download"></i> 1.2 GB</span>
+                        <span class="game-category">Football</span>
                     </div>
                     <div class="download-container">
-                        <a href="https://www.mediafire.com/file/xrmg05osa5jbktu/FTS+25+NBC+aPLAY.zip/file" class="download-btn secondary" download>
-                            <i class="fab fa-playstation"></i> Game File encrypted
+                        <a href="https://www.mediafire.com/file/xrmg05osa5jbktu/FTS+25+NBC+aPLAY.zip/file" class="download-btn" download>
+                            <i class="fab fa-playstation"></i> Download
                         </a>
                     </div>
                 </div>
             </div>
             
             <!-- Game 7 -->
-            <div class="game-card" data-title="mmaleo bus tz" data-category="horror survival">
-                <div class="game-img">
-                    <img src="ma.jpg" alt="MMALEO BUS Tz">
-                </div>
-                <div class="game-info">
+            <div class="game-card">
+                <img src="ma.jpg" alt="PINODIER BUS Tz" class="game-img">
+                <div class="game-content">
                     <h3 class="game-title">PINODIER BUS Tz</h3>
-                    <p class="game-description">Survive terrifying encounters in a mysterious Road filled with a lot of cars.</p>
+                    <p class="game-description">Survive terrifying encounters in a mysterious Road.</p>
                     <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.7/5
-                        </div>
-                        <div class="game-category">Driving</div>
+                        <span><i class="fas fa-star"></i> 4.7/5</span>
+                        <span><i class="fas fa-download"></i> 900 MB</span>
+                        <span class="game-category">Driving</span>
                     </div>
                     <div class="download-container">
                         <a href="https://www.mediafire.com/file/cpf4gi69roa551f/pinodeire+World+bus+by+aPLAY.7z/file" class="download-btn secondary" download>
-                            <i class="fab fa-playstation"></i>Game File encrypted
+                            <i class="fab fa-playstation"></i> Download
                         </a>
                     </div>
                 </div>
             </div>
             
             <!-- Game 8 -->
-            <div class="game-card" data-title="mortal combat mobile" data-category="action fps">
-                <div class="game-img">
-                    <img src="gt.jpeg" alt="MORTAL Combat mobile" class="image-game">
-                </div>
-                <div class="game-info">
-                    <h3 class="game-title">GTA V san andrea mode</h3>
-                    <p class="game-description">Futuristic lifestyle with advanced Mission cyber enhancements</p>
-                    
+            <div class="game-card">
+                <img src="gt.jpeg" alt="GTA V SAN ANDREA MODE" class="game-img">
+                <div class="game-content">
+                    <h3 class="game-title">GTA V SAN ANDREA MODE</h3>
+                    <p class="game-description">Futuristic lifestyle with advanced Mission.</p>
                     <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.8/5
-                        </div>
-                        <div class="game-size">0.6 GB</div>
-                        <div class="game-category">Action • FPS</div>
+                        <span><i class="fas fa-star"></i> 4.8/5</span>
+                        <span><i class="fas fa-download"></i> 600 MB</span>
+                        <span class="game-category">Action • FPS</span>
                     </div>
-                    
                     <div class="download-container">
-                        <a href="https://cpu-z.en.uptodown.com/android/download" class="download-btn lite-btn" download>
+                        <a href="https://cpu-z.en.uptodown.com/android/download" class="download-btn" download>
                             <i class="fas fa-mobile-alt"></i> CPU Z
                         </a>
-                        
-                        <a href="https://www.mediafire.com/file/fdvnqd6zwepty11/PowerernoGTA+V+style+Graphics.7z/file" class="download-btn standard-btn" download>
-                            <i class="fab fa-playstation"></i> Power vr encrypted
+                        <a href="https://www.mediafire.com/file/fdvnqd6zwepty11/PowerernoGTA+V+style+Graphics.7z/file" class="download-btn secondary" download>
+                            <i class="fab fa-playstation"></i> Power VR
                         </a>
-                        
+						   
                         <a href="https://www.mediafire.com/file/h3w8kd4wd4r6ely/Kaarma+YT+-+Graphics.zip/file" class="download-btn hd-btn" download>
                             <i class="fab fa-playstation"></i> Anderno encrypted
                         </a>
@@ -1232,653 +718,431 @@
             </div>
             
             <!-- Game 9 -->
-            <div class="game-card" data-title="cyberpunk 2077" data-category="rpg action">
-                <div class="game-img">
-                    <img src="W.jpg" alt="W.jpg" class="image-game">
-                </div>
-                <div class="game-info">
+            <div class="game-card">
+                <img src="W.jpg" alt="DLS 26" class="game-img">
+                <div class="game-content">
                     <h3 class="game-title">DLS 26</h3>
-                    <p class="game-description">Enjoyed football with your ultimate teams join a season Focus on your carrier.</p>
-                    
+                    <p class="game-description">Enjoy football with your ultimate teams.</p>
                     <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.6/5
-                        </div>
-                        <div class="game-size"></div>
-                        <div class="game-category">Football</div>
+                        <span><i class="fas fa-star"></i> 4.6/5</span>
+                        <span><i class="fas fa-download"></i> 2.0 GB</span>
+                        <span class="game-category">Football</span>
                     </div>
-                    
                     <div class="download-container">
                         <a href="https://download2392.mediafire.com/hrrbl08q9c5ganLfqAcLZqlSOOYrdSZl4jeUS_xlXdd8WOWTn9RiamPem88lbiTTwb5aIu_PgaxM8rnrFoRytDgxRcuwzOt-2lfSYywz_4bSJRCJxqWb6bF_Z1thNrtzf9Xqgqm4E13I6Ir6pId1OpWcQquB-nIHYTT6zPN1GRiR/ych8v382crfk77g/DLS+26+MOD+WYDAD+AC.zip" class="download-btn" download>
-                            <i class="fas fa-gamepad"></i>Additional Data
+                            <i class="fas fa-gamepad"></i> Additional Data
                         </a>
-                        
                         <a href="https://download2287.mediafire.com/v96tc4u4v3ygHeSk24jxX0tKD5ySW6EjbhnyEBl_v-S6IWAbSn2LwiPZRNP2T_UUVr6GyRf-PklbELfBEygas60yax_-n6jVFSSc5Y8VufVu68jZjZ5apx4QnX-2PWFh-c8EJ_9ZRi2-uXWkLZNP9TQ571NAtNDWpJGCVYR4eZQS/6htq8qj0n3g88dz/OBB+DLS+ARABIC+COMMENTARY+BY+DZ+HACKER.zip" class="download-btn secondary" download>
-                            <i class="fab fa-playstation"></i>OBB File (Free)
+                            <i class="fab fa-playstation"></i> OBB File
                         </a>
                     </div>
                 </div>
             </div>
             
             <!-- Game 10 -->
-            <div class="game-card" data-title="minecraft" data-category="sandbox adventure">
-                <div class="game-img">
-                    <img src="EF.jpg" alt="Minecraft" class="image-game">
-                </div>
-                <div class="game-info">
-                    <h3 class="game-title">eFootball PSP</h3>
-                    <p class="game-description">Build, explore and swim in this realistic-based Football Game. Create amazing Team and Win in worlds.</p>
-                    
+            <div class="game-card">
+                <img src="EF.jpg" alt="eFOOTBALL PSP" class="game-img">
+                <div class="game-content">
+                    <h3 class="game-title">eFOOTBALL PSP</h3>
+                    <p class="game-description">Build, explore and swim in this realistic Football Game.</p>
                     <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.9/5
-                        </div>
-                        <div class="game-size">700Mb</div>
-                        <div class="game-category">Football</div>
+                        <span><i class="fas fa-star"></i> 4.9/5</span>
+                        <span><i class="fas fa-download"></i> 700 MB</span>
+                        <span class="game-category">Football</span>
                     </div>
-                    
                     <div class="download-container">
-                        <a href="https://www.mediafire.com/file/xet3s2ofesp5do4/eFootball_2026_GAME.zip/file?dkey=il8vm9jx8dh&r=1126" class="download-btn" download>
-                            <i class="fab fa-playstation"></i>Game File (Free)
+                        <a href="https://www.mediafire.com/file/xet3s2ofesp5do4/eFootball_2026_GAME.zip/file" class="download-btn" download>
+                            <i class="fab fa-playstation"></i> Download
                         </a>
                     </div>
                 </div>
             </div>
-
+            
             <!-- Game 11 -->
-            <div class="game-card" data-title="spider man amazing 2" data-category="action adventure">
-                <div class="game-img">
-                    <img src="spi.jpeg" alt="Sp" class="card-image game">
-                </div>
-                <div class="game-info">
-                    <h3 class="game-title">Spider Man Amazing 2</h3>
-                    <p class="game-description">Swing through New York City as Spider-Man in this thrilling action-adventure game with enhanced web-slinging mechanics and combat.</p>
-                    
+            <div class="game-card">
+                <img src="spi.jpeg" alt="SPIDER MAN AMAZING 2" class="game-img">
+                <div class="game-content">
+                    <h3 class="game-title">SPIDER MAN AMAZING 2</h3>
+                    <p class="game-description">Swing through New York City as Spider-Man.</p>
                     <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.8/5
-                        </div>
-                        <div class="game-category">Action • Adventure</div>
+                        <span><i class="fas fa-star"></i> 4.8/5</span>
+                        <span><i class="fas fa-download"></i> 1.5 GB</span>
+                        <span class="game-category">Action • Adventure</span>
                     </div>
-                    
                     <div class="download-container">
-                        <a href="https://www.mediafire.com/file/04eqg7wh64a099x/Obb_Amazing_Spider_Man_2_-_RisTechy.com.rar/file?dkey=dw9ymdhx6up&r=1361" class="download-btn" download>
-                            <i class="fab fa-playstation"></i>Game File (Free)
+                        <a href="https://www.mediafire.com/file/04eqg7wh64a099x/Obb_Amazing_Spider_Man_2_-_RisTechy.com.rar/file" class="download-btn" download>
+                            <i class="fab fa-playstation"></i> Game File
                         </a>
-                        
                         <a href="https://www.mediafire.com/file/g33rxqm5qhzz3gp/Spider+MaN+2+Mod+-+RisTechy.com.7z/file" class="download-btn secondary" download>
-                            <i class="fas fa-gamepad"></i>Game Apk
+                            <i class="fas fa-gamepad"></i> Game Apk
                         </a>
                     </div>
                 </div>
             </div>
             
             <!-- Game 12 -->
-            <div class="game-card" data-title="cod warfare" data-category="action fps">
-                <div class="game-img">
-                    <img src="COD.jpeg" alt="COD WARFARE" class="image-game">
-                </div>
-                <div class="game-info">
+            <div class="game-card">
+                <img src="COD.jpeg" alt="COD WARFARE" class="game-img">
+                <div class="game-content">
                     <h3 class="game-title">COD WARFARE</h3>
-                    <p class="game-description">Experience intense modern warfare combat in this action-packed FPS game with realistic graphics and immersive gameplay.</p>
-                    
+                    <p class="game-description">Experience intense modern warfare combat.</p>
                     <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.8/5
-                        </div>
-                        <div class="game-size">3 GB</div>
-                        <div class="game-category">Action • FPS</div>
+                        <span><i class="fas fa-star"></i> 4.8/5</span>
+                        <span><i class="fas fa-download"></i> 3.0 GB</span>
+                        <span class="game-category">Action • FPS</span>
                     </div>
-                    
                     <div class="download-container">
-                        <a href="https://www.mediafire.com/file/6fm25f39to92gjy/Call_of_Duty_-_Modern_Warfare_3_%2528USA%2529.7z/file?dkey=tfnebh3kqss&r=251" class="download-btn secondary" download>
-                            <i class="fab fa-playstation"></i> Game File (Free)
+                        <a href="https://www.mediafire.com/file/6fm25f39to92gjy/Call_of_Duty_-_Modern_Warfare_3_%2528USA%2529.7z/file" class="download-btn secondary" download>
+                            <i class="fab fa-playstation"></i> Download
                         </a>
                     </div>
                 </div>
             </div>
-
-            <!-- Game 13 - FIFA 26 MOD -->
-            <div class="game-card" data-title="fifa 26 mod" data-category="football sports">
-                <div class="game-img">
-                    <img src="fifa.jpeg" alt="FIFA 26 MOD" class="image-game">
-                </div>
-                <div class="game-info">
+            
+            <!-- Game 13 -->
+            <div class="game-card">
+                <img src="fifa.jpeg" alt="FIFA 26 MOD" class="game-img">
+                <div class="game-content">
                     <h3 class="game-title">FIFA 26 MOD</h3>
-                    <p class="game-description">Experience the ultimate football simulation with enhanced graphics, updated teams, and realistic gameplay in this amazing FIFA 26 mod.</p>
-                    
+                    <p class="game-description">Experience the ultimate football simulation.</p>
                     <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.9/5
-                        </div>
-                        <div class="game-size">1.4 GB</div>
-                        <div class="game-category">Football • Sports</div>
+                        <span><i class="fas fa-star"></i> 4.9/5</span>
+                        <span><i class="fas fa-download"></i> 1.4 GB</span>
+                        <span class="game-category">Football • Sports</span>
                     </div>
-                    
                     <div class="download-container">
                         <a href="https://www.mediafire.com/file/lrahi23ghicyk00/data.rar/file" class="download-btn" download>
-                            <i class="fas fa-download"></i> Main Game File
+                            <i class="fas fa-download"></i> Main File
                         </a>
-                        
                         <a href="https://www.mediafire.com/file/h7bkoro46k3aope/obb.rar/file" class="download-btn secondary" download>
                             <i class="fas fa-cogs"></i> Graphics Patch
                         </a>
-                        
-                        <a href="https://www.mediafire.com/file/a633irr1qjx6vtl/EA_FC_MOD_26_BY_ZEOL.apk/file" class="download-btn" download>
+						 <a href="https://www.mediafire.com/file/a633irr1qjx6vtl/EA_FC_MOD_26_BY_ZEOL.apk/file" class="download-btn" download>
                             <i class="fas fa-users"></i> Updated apk
                         </a>
                     </div>
                 </div>
             </div>
-
-            <!-- Game 14 - DEAD TO RIGHT PSPPPP -->
-            <div class="game-card" data-title="dead to right psp" data-category="action adventure">
-                <div class="game-img">"
-                    <img src="dead.jpeg" alt="DEAD TO RIGHT PSPPPP" class="game card-image">
-                </div>
-                <div class="game-info">
-                    <h3 class="game-title">DEAD TO RIGHT PSPPPP</h3>
-                    <p class="game-description">Intense action-adventure game with thrilling combat, challenging missions, and immersive storyline for PSP emulator.</p>
-                    
+            
+            <!-- Game 14 -->
+            <div class="game-card">
+                <img src="dead.jpeg" alt="DEAD TO RIGHT PSP" class="game-img">
+                <div class="game-content">
+                    <h3 class="game-title">DEAD TO RIGHT PSP</h3>
+                    <p class="game-description">Intense action-adventure game for PSP.</p>
                     <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.7/5
-                        </div>
-                        <div class="game-size">100 MB</div>
-                        <div class="game-category">Action • Adventure</div>
+                        <span><i class="fas fa-star"></i> 4.7/5</span>
+                        <span><i class="fas fa-download"></i> 100 MB</span>
+                        <span class="game-category">Action • Adventure</span>
                     </div>
-                    
                     <div class="download-container">
                         <a href="https://www.mediafire.com/file/377a674hls5m492/Dead_to_Rights_-_Reckoning_%2528USA%2529.zip/file" class="download-btn secondary" download>
-                            <i class="fab fa-playstation"></i> Game File (Free)
-                        </a>
-                    </div>
-                </div>
-            </div>
-		 
-            <div class="game-card" data-title="bright memory infinite">
-                <div class="game-img">
-                    <img src="so.png" alt="" class="image-game">
-                </div>
-                <div class="game-info">
-                    <h3 class="game-title">SOULCOLBUR psp</h3>
-                    <p class="game-description"></p>
-                    
-                    <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.9/5
-                        </div>
-                        <div class="game-size">400 MB</div>
-                        <div class="game-category">RPG • Adventure</div>
-                    </div>
-                    
-                    <div class="download-container">
-                        <a href="https://sto.romsfast.com/PSP-Complete/Redump/Soulcalibur%20-%20Broken%20Destiny%20(Europe)%20(EnJaFrDeEsItRu).zip?token=cHFdalZkRlBDFG91XzhQZ15UQhJ2dVl1" class="download-btn premium-btn" download>
-                            <i class="fab fa-playstation"></i>Game File (Free)
+                            <i class="fab fa-playstation"></i> Download
                         </a>
                     </div>
                 </div>
             </div>
             
-            <div class="game-card" data-title="bright memory infinite">
-                <div class="game-img">
-                    <img src="ma.png" alt="" class="image-game">
-                </div>
-                <div class="game-info">
-                    <h3 class="game-title">MARVEL NAMESIS psp</h3>
-                    <p class="game-description"></p>
-                    
+            <!-- Game 15 -->
+            <div class="game-card">
+                <img src="so.png" alt="SOULCALIBUR PSP" class="game-img">
+                <div class="game-content">
+                    <h3 class="game-title">SOULCALIBUR PSP</h3>
+                    <p class="game-description">Classic fighting game for PSP.</p>
                     <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.9/5
-                        </div>
-                        <div class="game-size">100 MB</div>
-                        <div class="game-category">RPG • Adventure</div>
+                        <span><i class="fas fa-star"></i> 4.9/5</span>
+                        <span><i class="fas fa-download"></i> 400 MB</span>
+                        <span class="game-category">Fighting</span>
                     </div>
-                    
                     <div class="download-container">
-                        <a href="https://sto.romsfast.com/PSP-Complete/Redump/Marvel%20Nemesis%20-%20Rise%20of%20the%20Imperfects%20(Europe)%20(EnFrDeIt).zip?token=cHFdalZkRlBDFG91XzhQZ15UQhJ2d1B3" class="download-btn premium-btn" download>
-                            <i class="fab fa-playstation"></i>Game File (Free)
-                        </a>
-                    </div>
-                </div>
-            </div>
-           
-            <div class="game-card" data-title="bright memory infinite">
-                <div class="game-img">
-                    <img src="g.png" alt="GTA V DIFINITY EDITION" class="image-game">
-                </div>
-                <div class="game-info">
-                    <h3 class="game-title">GTA V DIFINITY EDITION</h3>
-                    <p class="game-description"></p>
-                    
-                    <div class="game-meta">
-                        <div class="game-rating">
-                            <i class="fas fa-star"></i> 4.9/5
-                        </div>
-                        <div class="game-size">500 MB</div>
-                        <div class="game-category">RPG • Adventure</div>
-                    </div>
-                    
-                    <div class="download-container">
-                        <a href="https://play.google.com/store/apps/details?id=com.rockstargames.gta3.de" class="download-btn premium-btn" download>
-                            <i class="fab fa-playstation"></i>Game File (Free)
+                        <a href="https://sto.romsfast.com/PSP-Complete/Redump/Soulcalibur%20-%20Broken%20Destiny%20(Europe)%20(EnJaFrDeEsItRu).zip" class="download-btn" download>
+                            <i class="fab fa-playstation"></i> Download
                         </a>
                     </div>
                 </div>
             </div>
             
+            <!-- Game 16 -->
+            <div class="game-card">
+                <img src="ma.png" alt="MARVEL NEMESIS PSP" class="game-img">
+                <div class="game-content">
+                    <h3 class="game-title">MARVEL NEMESIS PSP</h3>
+                    <p class="game-description">Marvel superhero fighting game for PSP.</p>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star"></i> 4.9/5</span>
+                        <span><i class="fas fa-download"></i> 100 MB</span>
+                        <span class="game-category">Fighting</span>
+                    </div>
+                    <div class="download-container">
+                        <a href="https://sto.romsfast.com/PSP-Complete/Redump/Marvel%20Nemesis%20-%20Rise%20of%20the%20Imperfects%20(Europe)%20(EnFrDeIt).zip" class="download-btn" download>
+                            <i class="fab fa-playstation"></i> Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Game 17 -->
+            <div class="game-card">
+                <img src="g.png" alt="GTA V DEFINITY EDITION" class="game-img">
+                <div class="game-content">
+                    <h3 class="game-title">GTA V DEFINITY EDITION</h3>
+                    <p class="game-description">Enhanced version of GTA V.</p>
+                    <div class="game-meta">
+                        <span><i class="fas fa-star"></i> 4.9/5</span>
+                        <span><i class="fas fa-download"></i> 500 MB</span>
+                        <span class="game-category">Action • Open World</span>
+                    </div>
+                    <div class="download-container">
+                        <a href="https://play.google.com/store/apps/details?id=com.rockstargames.gta3.de" class="download-btn" download>
+                            <i class="fab fa-playstation"></i> Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="ai-assistant" id="about">
+        <h2 class="section-title">About aPLAY</h2>
+        <div class="ai-chat">
+            <div class="ai-message">
+                <p>Welcome to aPLAY, the ultimate gaming destination! We provide high-quality games for all types of gamers. Our platform offers easy downloads and regular updates.</p>
+                <p>Our mission is to make gaming accessible to everyone with focus on user experience and security.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- AI Assistant -->
+    <section class="ai-assistant" id="ai">
+        <div class="ai-title">
+            <i class="fas fa-robot"></i>
+            <h3>aPLAY AI Assistant</h3>
+        </div>
+        
+        <div class="ai-stats">
+            <div class="stat-box">
+                <span class="stat-value" id="question-count">312</span>
+                <span class="stat-label">Questions Answered</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-value" id="visitor-count">12,847</span>
+                <span class="stat-label">Website Visitors</span>
+            </div>
+            <div class="stat-box">
+                <span class="stat-value" id="download-count">8,429</span>
+                <span class="stat-label">Game Downloads</span>
+            </div>
+        </div>
+        
+        <div class="ai-chat" id="ai-chat-box">
+            <div class="ai-message">
+                <p>Hello! I'm aPLAY AI Assistant. I can answer questions about our games, downloads, and website. How can I help you?</p>
+            </div>
+        </div>
+        
+        <div class="ai-input-container">
+            <input type="text" class="ai-input" id="ai-input" placeholder="Ask me about aPLAY...">
+            <button class="ai-send" id="ai-send"><i class="fas fa-paper-plane"></i> Send</button>
+        </div>
+    </section>
+
+    <!-- Floating Buttons -->
+    <div class="floating-buttons">
+        <a href="https://www.youtube.com/channel/UCDP3rhGTM2MHV2j8r9J-Cmg" class="float-btn youtube-btn" target="_blank">
+            <i class="fab fa-youtube"></i>
+        </a>
+        <a href="https://wa.me/255691009179" class="float-btn whatsapp-btn" target="_blank">
+            <i class="fab fa-whatsapp"></i>
+        </a>
+        <div class="float-btn music-btn" id="music-btn">
+            <i class="fas fa-music"></i>
         </div>
     </div>
 
     <!-- Footer -->
     <footer>
-        <div class="footer-content">
-            <div class="footer-section">
-                <h3>aPLAY</h3>
-                <p>Your ultimate destination for amazing games. Discover, download, and play!</p>
-                <div class="social-links">
-                    <a href="#"><i class="fab fa-facebook-f"></i></a>
-                    <a href="#"><i class="fab fa-twitter"></i></a>
-                    <a href="#"><i class="fab fa-instagram"></i></a>
-                    <a href="https://www.youtube.com/channel/UCDP3rhGTM2MHV2j8r9J-Cmg"><i class="fab fa-youtube"></i></a>
-                    <a href="#"><i class="fab fa-discord"></i></a>
-                </div>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Quick Links</h3>
-                <ul class="footer-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="about us.html">About Us</a></li>
-                    <li><a href="#">Categories</a></li>
-                    <li><a href="#">Top Games</a></li>
-                </ul>
-            </div>
-            
-            <div class="footer-section">
-                <h3>Support</h3>
-                <ul class="footer-links">
-                    <li><a href="#">Help Center</a></li>
-                    <li><a href="#">Contact Us</a></li>
-                    <li><a href="#">FAQ</a></li>
-                    <li><a href="#">System Requirements</a></li>
-                </ul>
-            </div>
+        <div class="social-links">
+            <a href="#" class="social-icon tiktok">
+                <i class="fab fa-tiktok"></i>
+            </a>
+            <a href="#" class="social-icon instagram">
+                <i class="fab fa-instagram"></i>
+            </a>
+            <a href="#" class="social-icon telegram">
+                <i class="fab fa-telegram"></i>
+            </a>
+            <a href="#" class="social-icon facebook">
+                <i class="fab fa-facebook-f"></i>
+            </a>
         </div>
         
-        <div class="footer-bottom">
-            <p>&copy; 2026 aPLAY. All rights reserved. | Designed with <i class="fas fa-heart" style="color: var(--accent);"></i> for gamers</p>
+        <div class="copyright">
+            <p>&copy; 2026+ aPLAY Gaming Hub. All Rights Reserved.</p>
+            <p style="margin-top: 10px;">Designed for Gamers Worldwide</p>
         </div>
     </footer>
 
-    <!-- Floating Buttons -->
-    <a href="https://wa.me/255691009179" class="whatsapp-float" target="_blank">
-        <i class="fas fa-paper-plane"></i>
-    </a>
-
-    <a href="https://www.youtube.com/channel/UCDP3rhGTM2MHV2j8r9J-Cmg" class="youtube-float" target="_blank">
-        <i class="fab fa-youtube"></i>
-    </a>
-
-    <div class="music-float" id="musicButton">
-        <i class="fas fa-music"></i>
-    </div>
+    <!-- Audio -->
+    <audio id="background-music" loop>
+        <source src="NF.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
-        // WhatsApp AI Banner Functionality
-        const askAIButton = document.getElementById('askAI');
-        const aiChatModal = document.getElementById('aiChatModal');
-        const aiCloseBtn = document.getElementById('aiCloseBtn');
-        const aiChatBody = document.getElementById('aiChatBody');
-        const aiChatInput = document.getElementById('aiChatInput');
-        const aiSendBtn = document.getElementById('aiSendBtn');
-
-        // AI Responses
-        const aiResponses = {
-            'hello': 'Hello! I\'m your aPLAY AI Assistant 🤖 How can I help you today?',
-            'hi': 'Hi there! 👋 Welcome to aPLAY! What would you like to know about our games?',
-            'what is aplay': 'aPLAY is your ultimate gaming destination! We provide amazing games for free download. Our collection includes action, adventure, RPG, sports, and many more game genres! 🎮',
-            'how to download': 'To download any game:\n1. Find the game you want\n2. Click the download button below the game description\n3. Follow the installation instructions\n4. Enjoy playing! 🎯\n\nAll games are completely FREE!',
-            'game recommendations': 'Based on your interests, I recommend:\n• GOD OF WAR (Action/RPG)\n• BRIGHT MEMORY INFINITE (Adventure)\n• FTS Tz (Football)\n• Spider Man Amazing 2 (Action)\n\nWhat type of games do you enjoy?',
-            'system requirements': 'Most games work on:\n• Android 5.0+ for mobile games\n• Windows 7+ for PC games\n• 2GB+ RAM recommended\n• 500MB+ free storage\n\nSpecific requirements are listed on each game page!',
-            'free': 'Yes! All games on aPLAY are completely FREE to download! No hidden costs, no subscriptions. Just pure gaming enjoyment! 💰',
-            'categories': 'We have games in these categories:\n• Action & Adventure\n• RPG & Fantasy\n• Sports & Racing\n• Fighting & FPS\n• Puzzle & Strategy\n\nUse the search to find your favorite!',
-            'contact': 'You can contact us through:\n• WhatsApp: +255 691009179\n• YouTube: aPLAY Channel\n• Email: support@aplay.com\n\nWe\'re here to help! 📞',
-            'thanks': 'You\'re welcome! 😊 Happy gaming! If you need anything else, just ask! 🎮',
-            'default': 'I\'m not sure I understand. Try asking me about:\n• Game downloads\n• System requirements\n• Game recommendations\n• aPLAY information\n• Contact details\n\nOr click one of the quick questions above! 🤔'
-        };
-
-        // Open AI Chat
-        askAIButton.addEventListener('click', function() {
-            aiChatModal.style.display = 'block';
-        });
-
-        // Close AI Chat
-        aiCloseBtn.addEventListener('click', function() {
-            aiChatModal.style.display = 'none';
-        });
-
-        // Close when clicking outside
-        aiChatModal.addEventListener('click', function(e) {
-            if (e.target === aiChatModal) {
-                aiChatModal.style.display = 'none';
-            }
-        });
-
-        // Quick question buttons
-        document.addEventListener('click', function(e) {
-            if (e.target.classList.contains('ai-quick-question')) {
-                const question = e.target.getAttribute('data-question');
-                aiChatInput.value = question;
-                sendAIMessage();
-            }
-        });
-
-        // Send message function
-        function sendAIMessage() {
-            const message = aiChatInput.value.trim().toLowerCase();
-            if (message === '') return;
-
-            // Add user message
-            addAIMessage(message, 'user');
-            aiChatInput.value = '';
-
-            // Show typing indicator
-            const typingIndicator = addAIMessage('Typing...', 'bot');
-            typingIndicator.style.fontStyle = 'italic';
-            typingIndicator.style.opacity = '0.7';
-
-            // Generate AI response
+        // Music Control
+        const musicBtn = document.getElementById('music-btn');
+        const backgroundMusic = document.getElementById('background-music');
+        let isPlaying = false;
+        
+        document.addEventListener('DOMContentLoaded', function() {
             setTimeout(() => {
-                // Remove typing indicator
-                aiChatBody.removeChild(typingIndicator);
-                
-                let response = aiResponses.default;
-                let foundMatch = false;
-                
-                // Check for keywords in user message
-                for (const [key, value] of Object.entries(aiResponses)) {
-                    if (message.includes(key)) {
-                        response = value;
-                        foundMatch = true;
-                        break;
-                    }
-                }
-
-                addAIMessage(response, 'bot');
-                
-                // Add quick questions for certain responses
-                if (message.includes('recommend') || message.includes('game') || !foundMatch) {
-                    setTimeout(() => {
-                        const quickQuestions = document.createElement('div');
-                        quickQuestions.className = 'ai-quick-questions';
-                        quickQuestions.innerHTML = `
-                            <div class="ai-quick-question" data-question="Action games">Action games</div>
-                            <div class="ai-quick-question" data-question="Sports games">Sports games</div>
-                            <div class="ai-quick-question" data-question="Free games">Free games</div>
-                            <div class="ai-quick-question" data-question="How to download">How to download</div>
-                        `;
-                        const lastMessage = aiChatBody.lastChild;
-                        aiChatBody.insertBefore(quickQuestions, lastMessage.nextSibling);
-                    }, 100);
-                }
-            }, 1500);
-        }
-
-        // Add message to AI chat
-        function addAIMessage(text, sender) {
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `ai-message ${sender}`;
-            messageDiv.textContent = text;
-            aiChatBody.appendChild(messageDiv);
-            aiChatBody.scrollTop = aiChatBody.scrollHeight;
-            return messageDiv;
-        }
-
-        // Event listeners for AI chat
-        aiSendBtn.addEventListener('click', sendAIMessage);
-        aiChatInput.addEventListener('keypress', function(e) {
-            if (e.key === 'Enter') {
-                sendAIMessage();
+                backgroundMusic.volume = 0.3;
+                backgroundMusic.play().then(() => {
+                    isPlaying = true;
+                    musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                    musicBtn.classList.add('playing');
+                }).catch(() => {});
+            }, 500);
+        });
+        
+        musicBtn.addEventListener('click', function() {
+            if (isPlaying) {
+                backgroundMusic.pause();
+                musicBtn.innerHTML = '<i class="fas fa-music"></i>';
+                musicBtn.classList.remove('playing');
+                isPlaying = false;
+            } else {
+                backgroundMusic.play();
+                musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
+                musicBtn.classList.add('playing');
+                isPlaying = true;
             }
         });
-
-        // Auto-response on first open
-        let firstOpen = true;
-        askAIButton.addEventListener('click', function() {
-            if (firstOpen) {
-                setTimeout(() => {
-                    addAIMessage("Welcome to aPLAY AI Assistant! I can help you find games, answer questions about downloads, recommend games based on your interests, and provide information about aPLAY. What would you like to know?", 'bot');
-                }, 500);
-                firstOpen = false;
-            }
-        });
-
-        // Search functionality (existing code)
+        
+        // Search
         const searchBox = document.querySelector('.search-box');
-        const searchResults = document.getElementById('searchResults');
         const gameCards = document.querySelectorAll('.game-card');
         
-        // Sample game data for search
-        const games = [
-            {
-                title: "GOD HAND",
-                category: "Fighting",
-                image: "hand.jpg",
-                element: document.querySelector('[data-title="god hand"]')
-            },
-            {
-                title: "GOD OF WAR",
-                category: "RPG • Adventure",
-                image: "image.jpg",
-                element: document.querySelector('[data-title="god of war"]')
-            },
-            {
-                title: "BRIGHT MEMORY INFINITE",
-                category: "RPG • Adventure",
-                image: "bright.jpg",
-                element: document.querySelector('[data-title="bright memory infinite"]')
-            },
-            {
-                title: "GTA V",
-                category: "Realistic",
-                image: "gtav.jpg",
-                element: document.querySelector('[data-title="gta v"]')
-            },
-            {
-                title: "TOMB RIDER",
-                category: "Action",
-                image: "tom.jpg",
-                element: document.querySelector('[data-title="tomb rider"]')
-            },
-            {
-                title: "FTS Tz",
-                category: "Football",
-                image: "ft.jpg",
-                element: document.querySelector('[data-title="fts tz"]')
-            },
-            {
-                title: "PINODIER BUS Tz",
-                category: "Driving",
-                image: "ma.jpg",
-                element: document.querySelector('[data-title="mmaleo bus tz"]')
-            },
-            {
-                title: "GTA V san andrea mode",
-                category: "Action • FPS",
-                image: "gt.jpeg",
-                element: document.querySelector('[data-title="mortal combat mobile"]')
-            },
-            {
-                title: "DLS 26",
-                category: "Football",
-                image: "W.jpg",
-                element: document.querySelector('[data-title="cyberpunk 2077"]')
-            },
-            {
-                title: "eFootball PSP",
-                category: "Football",
-                image: "EF.jpg",
-                element: document.querySelector('[data-title="minecraft"]')
-            },
-            {
-                title: "Spider Man Amazing 2",
-                category: "Action • Adventure",
-                image: "spi.jpeg",
-                element: document.querySelector('[data-title="spider man amazing 2"]')
-            },
-            {
-                title: "COD WARFARE",
-                category: "Action • FPS",
-                image: "COD.jpeg",
-                element: document.querySelector('[data-title="cod warfare"]')
-            },
-            {
-                title: "FIFA 26 MOD",
-                category: "Football • Sports",
-                image: "fifa26.jpg",
-                element: document.querySelector('[data-title="fifa 26 mod"]')
-            },
-            {
-                title: "DEAD TO RIGHT PSPPPP",
-                category: "Action • Adventure",
-                image: "deadright.jpg",
-                element: document.querySelector('[data-title="dead to right psp"]')
-            }
-        ];
-        
-        // Search function
-        function performSearch(query) {
-            const results = games.filter(game => 
-                game.title.toLowerCase().includes(query.toLowerCase()) || 
-                game.category.toLowerCase().includes(query.toLowerCase())
-            );
-            
-            displayResults(results);
-        }
-        
-        // Display search results
-        function displayResults(results) {
-            searchResults.innerHTML = '';
-            
-            if (results.length === 0) {
-                searchResults.innerHTML = '<div class="no-results">No games found matching your search</div>';
-            } else {
-                results.forEach(game => {
-                    const resultItem = document.createElement('div');
-                    resultItem.className = 'search-result-item';
-                    resultItem.innerHTML = `
-                        <img src="${game.image}" alt="${game.title}">
-                        <div class="game-info">
-                            <div class="game-title">${game.title}</div>
-                            <div class="game-category">${game.category}</div>
-                        </div>
-                    `;
-                    
-                    resultItem.addEventListener('click', () => {
-                        // Scroll to the game card
-                        if (game.element) {
-                            game.element.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                            
-                            // Highlight the game card
-                            game.element.style.boxShadow = '0 0 0 3px var(--accent)';
-                            setTimeout(() => {
-                                game.element.style.boxShadow = '';
-                            }, 2000);
-                        }
-                        
-                        // Close search results
-                        searchResults.style.display = 'none';
-                        searchBox.value = '';
-                    });
-                    
-                    searchResults.appendChild(resultItem);
-                });
-            }
-            
-            searchResults.style.display = results.length > 0 ? 'block' : 'none';
-        }
-        
-        // Event listeners for search
         searchBox.addEventListener('input', function() {
-            const query = this.value.trim();
+            const searchTerm = this.value.toLowerCase();
             
-            if (query.length > 0) {
-                performSearch(query);
-            } else {
-                searchResults.style.display = 'none';
-            }
-        });
-        
-        // Close search results when clicking outside
-        document.addEventListener('click', function(e) {
-            if (!e.target.closest('.search-container')) {
-                searchResults.style.display = 'none';
-            }
-        });
-        
-        // Music functionality
-        const musicButton = document.getElementById('musicButton');
-        let audio = null;
-        let isPlaying = false;
-
-        // Auto-play music when page loads
-        window.addEventListener('load', function() {
-            audio = new Audio('NF.mp3'); // Your local song
-            audio.loop = true;
-            audio.play().then(() => {
-                isPlaying = true;
-                musicButton.classList.add('playing');
-                musicButton.innerHTML = '<i class="fas fa-pause"></i>';
-            }).catch(error => {
-                console.log('Auto-play prevented:', error);
-            });
-        });
-
-        // Toggle play/pause on click
-        musicButton.addEventListener('click', function() {
-            if (audio) {
-                if (isPlaying) {
-                    audio.pause();
-                    musicButton.classList.remove('playing');
-                    musicButton.innerHTML = '<i class="fas fa-music"></i>';
-                } else {
-                    audio.play();
-                    musicButton.classList.add('playing');
-                    musicButton.innerHTML = '<i class="fas fa-pause"></i>';
-                }
-                isPlaying = !isPlaying;
-            }
-        });
-        
-        // Button transform effect
-        document.querySelectorAll('.download-btn').forEach(button => {
-            button.addEventListener('click', function(e) {
-                // Add clicked class for animation
-                this.classList.add('clicked');
+            gameCards.forEach(card => {
+                const title = card.querySelector('.game-title').textContent.toLowerCase();
+                const desc = card.querySelector('.game-description').textContent.toLowerCase();
+                const category = card.querySelector('.game-category').textContent.toLowerCase();
                 
-                // Remove class after animation completes
-                setTimeout(() => {
-                    this.classList.remove('clicked');
-                }, 600);
+                if (title.includes(searchTerm) || desc.includes(searchTerm) || category.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
             });
         });
-
-        // Shuffle game cards every 20 seconds
-        function shuffleGameCards() {
-            const gamesGrid = document.getElementById('gamesGrid');
-            const gameCards = Array.from(gamesGrid.querySelectorAll('.game-card'));
+        
+        // AI Assistant
+        const aiChatBox = document.getElementById('ai-chat-box');
+        const aiInput = document.getElementById('ai-input');
+        const aiSend = document.getElementById('ai-send');
+        const questionCount = document.getElementById('question-count');
+        const visitorCount = document.getElementById('visitor-count');
+        const downloadCount = document.getElementById('download-count');
+        
+        let visitors = 12847;
+        let downloads = 8429;
+        let questionsAnswered = 312;
+        
+        setInterval(() => {
+            visitors += Math.floor(Math.random() * 3);
+            visitorCount.textContent = visitors.toLocaleString();
+        }, 5000);
+        
+        const aiKnowledge = {
+            "hello": "Hello! How can I help you with aPLAY today?",
+            "hi": "Hi! Welcome to aPLAY Gaming Hub. What would you like to know?",
+            "download": "Click any download button below the game description to get the game for free!",
+            "free": "Yes! All games on aPLAY are completely free to download.",
+            "requirements": "Most games work on Android 5.0+ for mobile and Windows 7+ for PC.",
+            "contact": "Contact us via WhatsApp: +255 691009179 or YouTube: aPLAY Channel",
+            "games": "We have 17+ games including GOD HAND, GOD OF WAR, FIFA 26 MOD, and more!",
+            "help": "I can help with: game downloads, system requirements, recommendations, and general info."
+        };
+        
+        function getAIResponse(userInput) {
+            const input = userInput.toLowerCase().trim();
             
-            // Shuffle the array
-            for (let i = gameCards.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                gamesGrid.insertBefore(gameCards[j], gameCards[i]);
+            for (const [key, value] of Object.entries(aiKnowledge)) {
+                if (input.includes(key)) {
+                    return value;
+                }
             }
+            
+            return "I can help with game downloads, system requirements, or general questions about aPLAY.";
         }
-
-        // Shuffle game cards every 20 seconds
-        setInterval(shuffleGameCards, 20000);
+        
+        function sendAIMessage() {
+            const userMessage = aiInput.value.trim();
+            if (userMessage === "") return;
+            
+            const userMsgDiv = document.createElement('div');
+            userMsgDiv.className = 'ai-message';
+            userMsgDiv.style.background = 'rgba(255, 140, 0, 0.2)';
+            userMsgDiv.innerHTML = `<p><strong>You:</strong> ${userMessage}</p>`;
+            aiChatBox.appendChild(userMsgDiv);
+            
+            const aiResponse = getAIResponse(userMessage);
+            
+            setTimeout(() => {
+                const aiMsgDiv = document.createElement('div');
+                aiMsgDiv.className = 'ai-message';
+                aiMsgDiv.innerHTML = `<p><strong>AI:</strong> ${aiResponse}</p>`;
+                aiChatBox.appendChild(aiMsgDiv);
+                
+                questionsAnswered++;
+                questionCount.textContent = questionsAnswered;
+                
+                aiChatBox.scrollTop = aiChatBox.scrollHeight;
+            }, 300);
+            
+            aiInput.value = "";
+        }
+        
+        aiSend.addEventListener('click', sendAIMessage);
+        aiInput.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') sendAIMessage();
+        });
+        
+        // Track Downloads
+        document.querySelectorAll('.download-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                downloads++;
+                downloadCount.textContent = downloads.toLocaleString();
+            });
+        });
+        
+        // Smooth Scroll
+        document.querySelectorAll('nav a').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                window.scrollTo({
+                    top: targetSection.offsetTop - 80,
+                    behavior: 'smooth'
+                });
+            });
+        });
+        
+        // Game Card Animation
+        document.querySelectorAll('.game-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+            });
+        });
     </script>
 </body>
 </html>
