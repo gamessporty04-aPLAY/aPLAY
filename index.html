@@ -182,7 +182,7 @@
             --light-border: #e0e0e0;
         }
         
-        /* Light Theme */
+        /* Light Theme - Default */
         body.light-theme {
             background: var(--light-bg);
             color: var(--light-text);
@@ -232,8 +232,8 @@
         
         /* Default Dark Theme */
         body {
-            background: var(--dark-bg);
-            color: var(--light);
+            background: var(--light-bg); /* Default to light theme */
+            color: var(--light-text);
             min-height: 100vh;
             position: relative;
             overflow-x: hidden;
@@ -252,7 +252,7 @@
         
         /* Header */
         header {
-            background: rgba(0, 0, 0, 0.9);
+            background: rgba(255, 255, 255, 0.95); /* Light theme default */
             padding: 15px 5%;
             display: flex;
             justify-content: space-between;
@@ -260,13 +260,22 @@
             position: sticky;
             top: 0;
             z-index: 100;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1); /* Light theme shadow */
             backdrop-filter: blur(10px);
         }
         
-        body.light-theme header {
-            background: rgba(255, 255, 255, 0.95);
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        body.dark-theme header {
+            background: rgba(0, 0, 0, 0.9);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+        
+        body.dark-theme nav ul li a {
+            color: #fff;
+        }
+        
+        body.dark-theme nav ul li a:hover {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ff8c00;
         }
         
         body.light-theme nav ul li a {
@@ -300,7 +309,7 @@
         }
         
         nav ul li a {
-            color: #fff;
+            color: var(--light-text); /* Light theme default */
             text-decoration: none;
             font-weight: 600;
             font-size: 1.1rem;
@@ -310,7 +319,7 @@
         }
         
         nav ul li a:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.05); /* Light theme default */
             color: #ff8c00;
         }
         
@@ -340,16 +349,21 @@
         }
         
         .settings-container {
-            background: rgba(30, 30, 60, 0.95);
+            background: rgba(255, 255, 255, 0.95); /* Light theme default */
             border-radius: 20px;
             width: 90%;
             max-width: 500px;
             max-height: 85vh;
             overflow-y: auto;
-            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.2); /* Light theme shadow */
             border: 1px solid rgba(0, 204, 255, 0.3);
             position: relative;
             animation: slideUp 0.3s ease;
+        }
+        
+        body.dark-theme .settings-container {
+            background: rgba(30, 30, 60, 0.95);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
         }
         
         @keyframes slideUp {
@@ -357,18 +371,18 @@
             to { transform: translateY(0); opacity: 1; }
         }
         
-        body.light-theme .settings-container {
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(0, 204, 255, 0.3);
-        }
-        
         .settings-header {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.05); /* Light theme default */
             padding: 20px;
             border-radius: 20px 20px 0 0;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1); /* Light theme border */
+        }
+        
+        body.dark-theme .settings-header {
+            background: rgba(0, 0, 0, 0.3);
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
         
@@ -387,7 +401,7 @@
         .close-settings {
             background: none;
             border: none;
-            color: #fff;
+            color: var(--light-text); /* Light theme default */
             font-size: 1.8rem;
             cursor: pointer;
             width: 40px;
@@ -399,13 +413,17 @@
             transition: all 0.3s;
         }
         
+        body.dark-theme .close-settings {
+            color: #fff;
+        }
+        
         .close-settings:hover {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.05); /* Light theme default */
             transform: rotate(90deg);
         }
         
-        body.light-theme .close-settings {
-            color: var(--light-text);
+        body.dark-theme .close-settings:hover {
+            background: rgba(255, 255, 255, 0.1);
         }
         
         .settings-content {
@@ -413,7 +431,7 @@
         }
         
         .setting-item {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(220, 220, 230, 0.3); /* Light theme default */
             padding: 20px;
             border-radius: 12px;
             margin-bottom: 15px;
@@ -421,13 +439,17 @@
             transition: all 0.3s;
         }
         
+        body.dark-theme .setting-item {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
         .setting-item:hover {
-            background: rgba(0, 0, 0, 0.4);
+            background: rgba(0, 204, 255, 0.1); /* Light theme default */
             transform: translateX(5px);
         }
         
-        body.light-theme .setting-item {
-            background: rgba(220, 220, 230, 0.3);
+        body.dark-theme .setting-item:hover {
+            background: rgba(0, 0, 0, 0.4);
         }
         
         .setting-header {
@@ -452,22 +474,22 @@
         .setting-name {
             font-size: 1.2rem;
             font-weight: 600;
+            color: var(--light-text); /* Light theme default */
+        }
+        
+        body.dark-theme .setting-name {
             color: #fff;
         }
         
-        body.light-theme .setting-name {
-            color: var(--light-text);
-        }
-        
         .setting-description {
-            color: #aaa;
+            color: #666; /* Light theme default */
             font-size: 0.85rem;
             margin-bottom: 15px;
             line-height: 1.5;
         }
         
-        body.light-theme .setting-description {
-            color: #666;
+        body.dark-theme .setting-description {
+            color: #aaa;
         }
         
         /* Toggle Switch */
@@ -497,7 +519,7 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background-color: #444;
+            background-color: #ccc; /* Default OFF state */
             transition: .4s;
             border-radius: 34px;
         }
@@ -523,13 +545,13 @@
         }
         
         .toggle-label {
-            color: #fff;
+            color: var(--light-text); /* Light theme default */
             font-weight: 500;
             min-width: 60px;
         }
         
-        body.light-theme .toggle-label {
-            color: var(--light-text);
+        body.dark-theme .toggle-label {
+            color: #fff;
         }
         
         /* Theme Selector */
@@ -543,15 +565,15 @@
             flex: 1;
             padding: 12px;
             border-radius: 8px;
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(0, 0, 0, 0.05); /* Light theme default */
             border: 2px solid transparent;
             cursor: pointer;
             text-align: center;
             transition: all 0.3s;
         }
         
-        body.light-theme .theme-option {
-            background: rgba(0, 0, 0, 0.05);
+        body.dark-theme .theme-option {
+            background: rgba(255, 255, 255, 0.1);
         }
         
         .theme-option:hover {
@@ -566,21 +588,21 @@
         .theme-name {
             font-weight: 600;
             margin-bottom: 5px;
-            color: #fff;
+            color: var(--light-text); /* Light theme default */
             font-size: 0.9rem;
         }
         
-        body.light-theme .theme-name {
-            color: var(--light-text);
+        body.dark-theme .theme-name {
+            color: #fff;
         }
         
         .theme-desc {
             font-size: 0.75rem;
-            color: #aaa;
+            color: #666; /* Light theme default */
         }
         
-        body.light-theme .theme-desc {
-            color: #666;
+        body.dark-theme .theme-desc {
+            color: #aaa;
         }
         
         /* Save Settings Button */
@@ -619,12 +641,17 @@
             padding-left: 45px;
             border-radius: 30px;
             border: 2px solid transparent;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
+            background: rgba(0, 0, 0, 0.05); /* Light theme default */
+            color: var(--light-text);
             font-size: 1rem;
             width: 250px;
             transition: all 0.3s;
             outline: none;
+        }
+        
+        body.dark-theme .search-box {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
         }
         
         .search-box:focus {
@@ -644,6 +671,10 @@
             left: 15px;
             top: 50%;
             transform: translateY(-50%);
+            color: #666; /* Light theme default */
+        }
+        
+        body.dark-theme .search-container i {
             color: #aaa;
         }
         
@@ -666,12 +697,12 @@
             font-size: 1.2rem;
             max-width: 800px;
             margin: 0 auto 30px;
-            color: #ccc;
+            color: #666; /* Light theme default */
             line-height: 1.6;
         }
         
-        body.light-theme .hero p {
-            color: #666;
+        body.dark-theme .hero p {
+            color: #ccc;
         }
         
         /* Games */
@@ -683,13 +714,13 @@
             font-size: 2.2rem;
             margin-bottom: 30px;
             text-align: center;
-            color: #fff;
+            color: var(--light-text); /* Light theme default */
             position: relative;
             padding-bottom: 15px;
         }
         
-        body.light-theme .section-title {
-            color: var(--light-text);
+        body.dark-theme .section-title {
+            color: #fff;
         }
         
         .section-title::after {
@@ -712,13 +743,19 @@
         }
         
         .game-card {
-            background: rgba(20, 20, 40, 0.7);
+            background: var(--light-card); /* Light theme default */
             border-radius: 15px;
             overflow: hidden;
             transition: all 0.3s;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1); /* Light theme shadow */
+            border: 1px solid var(--light-border);
+            position: relative;
+        }
+        
+        body.dark-theme .game-card {
+            background: rgba(20, 20, 40, 0.7);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            position: relative;
         }
         
         .game-card:hover {
@@ -770,14 +807,22 @@
         .game-title {
             font-size: 1.5rem;
             margin-bottom: 10px;
+            color: var(--light-text); /* Light theme default */
+        }
+        
+        body.dark-theme .game-title {
             color: #fff;
         }
         
         .game-description {
-            color: #aaa;
+            color: #666; /* Light theme default */
             margin-bottom: 15px;
             line-height: 1.5;
             font-size: 0.95rem;
+        }
+        
+        body.dark-theme .game-description {
+            color: #aaa;
         }
         
         .game-meta {
@@ -909,12 +954,17 @@
         
         /* AI Assistant */
         .ai-assistant {
-            background: rgba(30, 30, 60, 0.9);
+            background: rgba(240, 240, 245, 0.9); /* Light theme default */
             border-radius: 15px;
             padding: 25px;
             margin: 50px 5% 30px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1); /* Light theme shadow */
             border: 1px solid rgba(0, 204, 255, 0.3);
+        }
+        
+        body.dark-theme .ai-assistant {
+            background: rgba(30, 30, 60, 0.9);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
         }
         
         .ai-title {
@@ -934,12 +984,16 @@
         }
         
         .stat-box {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(0, 0, 0, 0.05); /* Light theme default */
             padding: 15px;
             border-radius: 10px;
             flex: 1;
             min-width: 200px;
             text-align: center;
+        }
+        
+        body.dark-theme .stat-box {
+            background: rgba(0, 0, 0, 0.3);
         }
         
         .stat-value {
@@ -951,11 +1005,15 @@
         
         .stat-label {
             font-size: 0.9rem;
+            color: #666; /* Light theme default */
+        }
+        
+        body.dark-theme .stat-label {
             color: #aaa;
         }
         
         .ai-chat {
-            background: rgba(0, 0, 0, 0.3);
+            background: rgba(220, 220, 230, 0.3); /* Light theme default */
             border-radius: 10px;
             padding: 20px;
             max-height: 200px;
@@ -963,8 +1021,12 @@
             margin-bottom: 20px;
         }
         
+        body.dark-theme .ai-chat {
+            background: rgba(0, 0, 0, 0.3);
+        }
+        
         .ai-message {
-            background: rgba(0, 204, 255, 0.2);
+            background: rgba(0, 204, 255, 0.1);
             padding: 10px 15px;
             border-radius: 10px;
             margin-bottom: 10px;
@@ -981,9 +1043,23 @@
             padding: 12px 15px;
             border-radius: 30px;
             border: none;
-            background: rgba(255, 255, 255, 0.1);
-            color: white;
+            background: rgba(0, 0, 0, 0.05); /* Light theme default */
+            color: #FFD700 !important; /* YELLOW TEXT COLOR */
             outline: none;
+            font-weight: 500;
+        }
+        
+        body.dark-theme .ai-input {
+            background: rgba(255, 255, 255, 0.1);
+        }
+        
+        .ai-input::placeholder {
+            color: #999;
+            font-weight: normal;
+        }
+        
+        body.dark-theme .ai-input::placeholder {
+            color: #aaa;
         }
         
         .ai-send {
@@ -1089,7 +1165,7 @@
         }
     </style>
 </head>
-<body>
+<body class="light-theme"> <!-- Default to light theme -->
     <!-- Loading Screen -->
     <div id="loading-screen">
         <div class="loading-logo">
@@ -1491,7 +1567,7 @@
                             <span><i class="fas fa-star"></i> 4.9/5</span>
                             <span><i class="fas fa-download"></i> 100 MB</span>
                             <span class="game-category">Fighting</span>
-        </div>
+                        </div>
                         <div class="download-container">
                             <a href="https://sto.romsfast.com/PSP-Complete/Redump/Marvel%20Nemesis%20-%20Rise%20of%20the%20Imperfects%20(Europe)%20(EnFrDeIt).zip" class="download-btn" download>
                                 <i class="fab fa-playstation"></i> Download
@@ -1531,7 +1607,7 @@
                             <span class="game-category">Fighting • Modded</span>
                         </div>
                         <div class="download-container">
-                            <a href="https://sto.romsfast.com/Mods/PSP/Tekken%208%20Mod%20NewGen.chd?token=cHFdalZkRlBDFG91XThQZ15XRhN4cFl3" class="download-btn" download>
+                            <a href="https://www.mediafire.com/file/sample-t8-mod/file.zip" class="download-btn" download>
                                 <i class="fab fa-playstation"></i> Download T8 Mod PSP
                             </a>
                         </div>
@@ -1569,7 +1645,7 @@
             </div>
             
             <div class="ai-input-container">
-                <input type="text" class="ai-input" id="ai-input" placeholder="Ask me about aPLAY...">
+                <input type="text" class="ai-input" id="ai-input" placeholder="Ask me about aPLAY..." style="color: #FFD700 !important;">
                 <button class="ai-send" id="ai-send"><i class="fas fa-paper-plane"></i> Send</button>
             </div>
         </section>
@@ -1614,13 +1690,13 @@
                         </div>
                     </div>
                     <div class="theme-selector">
-                        <div class="theme-option active" data-theme="dark">
-                            <div class="theme-name">Dark Theme</div>
-                            <div class="theme-desc">Default gaming mode</div>
-                        </div>
-                        <div class="theme-option" data-theme="light">
+                        <div class="theme-option active" data-theme="light">
                             <div class="theme-name">Light Theme</div>
-                            <div class="theme-desc">Bright and clean</div>
+                            <div class="theme-desc">Default white theme</div>
+                        </div>
+                        <div class="theme-option" data-theme="dark">
+                            <div class="theme-name">Dark Theme</div>
+                            <div class="theme-desc">Gaming mode</div>
                         </div>
                     </div>
                 </div>
@@ -1638,10 +1714,10 @@
                     </div>
                     <div class="toggle-switch">
                         <label class="switch">
-                            <input type="checkbox" id="vibration-toggle" checked>
+                            <input type="checkbox" id="vibration-toggle">
                             <span class="slider"></span>
                         </label>
-                        <span class="toggle-label" id="vibration-label">ON</span>
+                        <span class="toggle-label" id="vibration-label">OFF</span>
                     </div>
                 </div>
                 
@@ -1658,10 +1734,10 @@
                     </div>
                     <div class="toggle-switch">
                         <label class="switch">
-                            <input type="checkbox" id="blinking-toggle" checked>
+                            <input type="checkbox" id="blinking-toggle">
                             <span class="slider"></span>
                         </label>
-                        <span class="toggle-label" id="blinking-label">ON</span>
+                        <span class="toggle-label" id="blinking-label">OFF</span>
                     </div>
                 </div>
                 
@@ -1718,10 +1794,10 @@
                     </div>
                     <div class="toggle-switch">
                         <label class="switch">
-                            <input type="checkbox" id="sound-toggle" checked>
+                            <input type="checkbox" id="sound-toggle">
                             <span class="slider"></span>
                         </label>
-                        <span class="toggle-label" id="sound-label">ON</span>
+                        <span class="toggle-label" id="sound-label">OFF</span>
                     </div>
                 </div>
                 
@@ -1833,14 +1909,14 @@
         
         // ==================== MAIN PAGE FUNCTIONALITY ====================
         function initializeMainPage() {
-            // Settings Configuration
+            // Settings Configuration - DEFAULT SETTINGS: All OFF except Auto-play music
             let settings = {
-                theme: 'dark',
-                vibration: true,
-                blinking: true,
-                autoScroll: false,
-                autoMusic: true,
-                soundEffects: true
+                theme: 'light', // Default to light theme
+                vibration: false, // OFF by default
+                blinking: false, // OFF by default
+                autoScroll: false, // OFF by default
+                autoMusic: true, // ON by default
+                soundEffects: false // OFF by default
             };
 
             // Load saved settings from localStorage
@@ -1863,15 +1939,17 @@
             // Apply current settings
             function applySettings() {
                 // Apply theme
-                if (settings.theme === 'light') {
+                if (settings.theme === 'dark') {
+                    document.body.classList.remove('light-theme');
+                    document.body.classList.add('dark-theme');
+                    document.querySelectorAll('.theme-option').forEach(option => {
+                        option.classList.toggle('active', option.dataset.theme === 'dark');
+                    });
+                } else {
+                    document.body.classList.remove('dark-theme');
                     document.body.classList.add('light-theme');
                     document.querySelectorAll('.theme-option').forEach(option => {
                         option.classList.toggle('active', option.dataset.theme === 'light');
-                    });
-                } else {
-                    document.body.classList.remove('light-theme');
-                    document.querySelectorAll('.theme-option').forEach(option => {
-                        option.classList.toggle('active', option.dataset.theme === 'dark');
                     });
                 }
 
@@ -1895,7 +1973,7 @@
                 document.getElementById('sound-toggle').checked = settings.soundEffects;
                 document.getElementById('sound-label').textContent = settings.soundEffects ? 'ON' : 'OFF';
 
-                // Apply auto music
+                // Apply auto music if enabled
                 if (settings.autoMusic) {
                     setTimeout(() => {
                         const backgroundMusic = document.getElementById('background-music');
@@ -1905,7 +1983,12 @@
                             musicBtn.innerHTML = '<i class="fas fa-pause"></i>';
                             musicBtn.classList.add('playing');
                             isPlaying = true;
-                        }).catch(() => {});
+                        }).catch(() => {
+                            // Auto-play might be blocked by browser, show instruction
+                            setTimeout(() => {
+                                showNotification("Click the music button to play background music");
+                            }, 2000);
+                        });
                     }, 1000);
                 }
             }
@@ -2262,7 +2345,8 @@
                 "theme": "Go to Settings to switch between Dark and Light themes.",
                 "vibration": "Vibration settings can be toggled ON/OFF in the Settings panel.",
                 "search": "Type any game name in the search box and press Enter to find it. The game card will blink with rainbow colors!",
-                "blink": "Game cards blink with 7 rainbow colors when you touch or search for them. You can disable this in Settings."
+                "blink": "Game cards blink with 7 rainbow colors when you touch or search for them. You can disable this in Settings.",
+                "music": "Background music auto-plays by default. You can control it from the floating music button or settings."
             };
             
             function getAIResponse(userInput) {
@@ -2348,6 +2432,9 @@
             setTimeout(() => {
                 showNotification("Welcome to aPLAY Gaming Hub! Search for games or ask our AI assistant for help.");
             }, 2000);
+            
+            // Force AI input text color to yellow
+            aiInput.style.color = '#FFD700';
         }
     </script>
 </body>
