@@ -306,6 +306,30 @@ const GAME_DATA = {
     links: [
         "https://www.mediafire.com/file/yzorzzvrgv8t48d/SHADOWGUN_1.7.0-Max_Gfx-140Fps.apk/file"
     ]
+	},
+	"20": {
+    name: "FC 26 PSP",
+    pin: "127600",
+    image: "FC.jpg",
+    description: "Experience intense third-person real pitch emotion with football tactics.",
+    rating: "4.7/5",
+    size: "1.4 GB",
+    category: "Football",
+    links: [
+        "https://www.mediafire.com/file/lg9y846339he14u/Spider-Man_3_%2528USA%2529_%2528v1.02%2529_-_RisTechy.com.zip/file?dkey=zwaj89glcjo&r=147"
+    ]
+	},
+	"21": {
+    name: "COD PSP",
+    pin: "000001",
+    image: "call.jpg",
+    description: "Experience intense third-person shooter combat with stunning graphics and immersive gameplay.",
+    rating: "4.7/5",
+    size: "300 MB",
+    category: "Shooter • Action",
+    links: [
+        "https://www.mediafire.com/file/42cngwlqkyaevy4/Call_of_Duty_-_Roads_to_Victory_%2528Europe%2529.7z/file?dkey=5bajgkxsofb&r=201"
+    ]
 }
 };
 
@@ -542,9 +566,13 @@ function showDownloadOptions(gameId) {
     // Get link names based on game
     function getLinkName(gameId, index) {
         const linkNames = {
-            "1": ["Emulator APK", "Game ISO"],
+            "1": ["Emulator APK", "Game ISO"],			
             "2": ["Emulator APK", "Game ISO"],
-            "8": ["CPU-Z App", "Graphics Pack 1", "Graphics Pack 2", "Graphics Pack 3"],
+			"4": ["COMING SOON","COMING SOON"],
+			"5": ["PIN 2 ON UTUBE"],
+			"6": ["PN 2 DM"],
+			"7": ["PIN 2 DM"],
+            "8": ["CPU-Z App", "POWER VR GRPH", "ADERNO GRPH", "MALI GRPH"],
             "9": ["Game APK", "OBB Data"],
             "11": ["Game OBB", "Game APK"],
             "13": ["Game Data", "OBB File", "Game APK"]
