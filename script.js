@@ -158,7 +158,7 @@ const GAME_DATA = {
     },
     "8": {
         name: "GTA V SAN ANDREA MODE",
-        pin: "098762",
+        pin: "211815",
         image: "gt.jpeg",
         description: "Futuristic lifestyle with advanced Mission.",
         rating: "4.8/5",
@@ -166,9 +166,9 @@ const GAME_DATA = {
         category: "Action • FPS",
         links: [
             "https://cpu-z.en.uptodown.com/android/download",
-            "https://www.mediafire.com/file/fdvnqd6zwepty11/PowerernoGTA+V+style+Graphics.7z/file",
-            "https://www.mediafire.com/file/h3w8kd4wd4r6ely/Kaarma+YT+-+Graphics.zip/file",
-            "https://www.mediafire.com/file/4pez6v3jv8g7vq8/mali-Kaarma+YT+-+Graphics.zip/file?dkey=czxtdayn53g&r=1577"
+            "https://www.mediafire.com/file/2or50sx49aow4xx/Power_Vr_-_GTA_V_Style_Graphics_v2.7z/file?dkey=i2sfwj2y7xd&r=460",
+            "https://www.mediafire.com/file/1sxzv4mforgbl0u/Aderno_-_GTA_V_Style_Graphics_v2.7z/file?dkey=cps0io69k3o&r=1078",
+            "https://www.mediafire.com/file/3notfc5soutg2ve/Mali_-_GTA_V_Style_Graphics_v2.7z/file?dkey=865i6iypxzq&r=1488"
         ]
     },
     "9": {
@@ -337,10 +337,22 @@ const GAME_DATA = {
     image: "mat.jpg",
     description: "Experience intense third-person Fighting agaist other combat with stunning graphics and immersive gameplay",
     rating: "4.7/5",
-    size: " MB",
+    size: "600 MB",
     category: "Fighting",
     links: [
-        ""
+        "https://www.mediafire.com/file/par831qvb13r6mm/elkingofthemusicall%252C_Inc.rar/file"
+    ]
+	},
+	"23": {
+    name: "UNBROKEN SURVIVAL",
+    pin: "160009",
+    image: "bro.jpg",
+    description: "Enter If you dare. Survive the unthinkable. Outlast the rest",
+    rating: "5/5",
+    size: "1.29 GB",
+    category: "Fighting",
+    links: [
+        "https://dl.apkvision.org/unbroken-survival/Unbroken-Survival-v0.2.2-full-apkvision.apk"
     ]
 }
 };
