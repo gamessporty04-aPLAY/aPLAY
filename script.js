@@ -141,7 +141,7 @@ const GAME_DATA = {
         size: "1.2 GB",
         category: "Football",
         links: [
-            "https://www.mediafire.com/file/xrmg05osa5jbktu/FTS+25+NBC+aPLAY.zip/file"
+            "https://www.mediafire.com/file/2kau0ceh13ycxtv/FTS_25_NBC.7z/file?dkey=9oy7lc0bvvx&r=1976"
         ]
     },
     "7": {
