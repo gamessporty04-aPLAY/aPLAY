@@ -134,7 +134,7 @@ const GAME_DATA = {
     },
     "6": {
         name: "FTS Tz",
-        pin: "607650",
+        pin: "454501",
         image: "ft.jpg",
         description: "Enjoy Football feeling with your favorite African Teams.",
         rating: "4.3/5",
