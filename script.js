@@ -158,7 +158,7 @@ const GAME_DATA = {
     },
     "8": {
         name: "GTA V SAN ANDREA MODE",
-        pin: "218885",
+        pin: "608325",
         image: "gt.jpeg",
         description: "Futuristic lifestyle with advanced Mission.",
         rating: "4.8/5",
