@@ -88,7 +88,7 @@ const GAME_DATA = {
         image: "image.jpg",
         description: "Pass on an unforgettable adventure through enchanted Warfare.",
         rating: "4.9/5",
-        size: "3.1 GB",
+        size: "2.1 GB",
         category: "RPG • Adventure",
         links: [
             "https://www.mediafire.com/file/fhyh2jtzk4rk1rb/AetherSX2-v1.5-4248-Aethersx2apk.com.apk/file",
@@ -227,7 +227,7 @@ const GAME_DATA = {
         image: "fifa.jpeg",
         description: "Experience the ultimate football simulation.",
         rating: "4.9/5",
-        size: "1.4 GB",
+        size: "4.4 GB",
         category: "Football • Sports",
         links: [
             "https://www.mediafire.com/file/lrahi23ghicyk00/data.rar/file",
@@ -252,7 +252,7 @@ const GAME_DATA = {
         pin: "161600",
         image: "so.png",
         description: "Classic fighting game for PSP.",
-        rating: "4.9/5",
+        rating: "2.9/5",
         size: "400 MB",
         category: "Fighting",
         links: [
@@ -264,7 +264,7 @@ const GAME_DATA = {
         pin: "770717",
         image: "ma.png",
         description: "Marvel superhero fighting game for PSP.",
-        rating: "4.9/5",
+        rating: "2.9/5",
         size: "100 MB",
         category: "Fighting",
         links: [
@@ -306,20 +306,9 @@ const GAME_DATA = {
     links: [
         "https://www.mediafire.com/file/yzorzzvrgv8t48d/SHADOWGUN_1.7.0-Max_Gfx-140Fps.apk/file"
     ]
+	
 	},
 	"20": {
-    name: "FC 26 PSP",
-    pin: "127600",
-    image: "FC.jpg",
-    description: "Experience intense third-person real pitch emotion with football tactics.",
-    rating: "4.7/5",
-    size: "1.4 GB",
-    category: "Football",
-    links: [
-        "https://www.mediafire.com/file/lg9y846339he14u/Spider-Man_3_%2528USA%2529_%2528v1.02%2529_-_RisTechy.com.zip/file?dkey=zwaj89glcjo&r=147"
-    ]
-	},
-	"21": {
     name: "COD PSP",
     pin: "000001",
     image: "call.jpg",
@@ -331,7 +320,7 @@ const GAME_DATA = {
         "https://www.mediafire.com/file/42cngwlqkyaevy4/Call_of_Duty_-_Roads_to_Victory_%2528Europe%2529.7z/file?dkey=5bajgkxsofb&r=201"
     ]
 	},
-	"22": {
+	"21": {
     name: "MORTAL COMBAT PSP",
     pin: "165409",
     image: "mat.jpg",
@@ -343,17 +332,30 @@ const GAME_DATA = {
         "https://www.mediafire.com/file/par831qvb13r6mm/elkingofthemusicall%252C_Inc.rar/file"
     ]
 	},
-	"23": {
+	"22": {
     name: "UNBROKEN SURVIVAL",
     pin: "160009",
     image: "bro.jpg",
     description: "Enter If you dare. Survive the unthinkable. Outlast the rest",
     rating: "5/5",
-    size: "1.29 GB",
+    size: "3.29 GB",
     category: "Fighting",
     links: [
         "https://dl.apkvision.org/unbroken-survival/Unbroken-Survival-v0.2.2-full-apkvision.apk"
     ]
+	},
+	"23": {
+    name: "SUBWAY HACKED",
+    pin: "161645",
+    image: "sub.jpg",
+    description: "Run till the End.long way unlimited coins",
+    rating: "3/5",
+    size: "230 MB",
+    category: "Running",
+    links: [
+        "https://www.mediafire.com/file/z9vnsdhkrg7kz1t/Subway-surfers-v3.56.13-mod-RisTechy.com.apk/file?dkey=95b59o75kyg&r=1324"
+    ]
+	
 }
 };
 
