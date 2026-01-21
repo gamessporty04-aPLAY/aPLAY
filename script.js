@@ -158,7 +158,7 @@ const GAME_DATA = {
     },
     "8": {
         name: "GTA V SAN ANDREA MODE",
-        pin: "608325",
+        pin: "211815",
         image: "gt.jpeg",
         description: "Futuristic lifestyle with advanced Mission.",
         rating: "4.8/5",
@@ -355,7 +355,78 @@ const GAME_DATA = {
     links: [
         "https://www.mediafire.com/file/z9vnsdhkrg7kz1t/Subway-surfers-v3.56.13-mod-RisTechy.com.apk/file?dkey=95b59o75kyg&r=1324"
     ]
-	
+          
+    },
+    "24": {
+        name: "Need for speed",
+        pin: "213978",
+        image: "Need.jpg",
+        description: "Pass on an unforgettable adventure through enchanted Warfare.",
+        rating: "4.9/5",
+        size: "632 MB",
+        category: "Racing",
+        links: [
+            "https://dl.apkvision.org/need-for-speed-most-wanted-v1.3.128-cache-apkvision.zip",
+            "https://dl.apkvision.org/need-for-speed-most-wanted/need-for-speed-most-wanted-v1.3.128-mod-money.apk"
+        ]  
+                                      
+ },
+    
+    "25": {
+        name: "𝐵𝑎𝑡 𝑀𝑎𝑛",
+        pin: "223876",
+        image: "Bat.jpg",
+        description: "𝐸𝑥𝑝𝑒𝑟𝑖𝑒𝑛𝑐𝑒 𝐷𝐶 𝑠𝑐𝑒𝑛𝑒𝑠 𝑤𝑖𝑡ℎ 𝐵𝑎𝑡 𝑚𝑎𝑛 𝑠𝑘𝑖𝑙𝑙𝑠",
+        rating: "4.9/5",
+        size: "2.1 GB",
+        category: "RPG • Fighting",
+        links: [
+            "https://dl.apkvision.org/the-dark-knight-rises/the-dark-knight-rises-1.1.6b-obb.zip",
+            "https://dl.apkvision.org/the-dark-knight-rises/the-dark-knight-rises-1.1.6b-mod-apkvision.apk"
+     ]
+     
+},
+    "26": {
+        name: "𝑂𝑛𝑐𝑒 𝐻𝑢𝑚𝑎𝑛",
+        pin: "767676",
+        image: "Once.jpg",
+        description: "𝑇𝑟𝑦 𝑡𝑜 𝑙𝑖𝑣𝑒 𝑖𝑛 𝑡𝑟𝑢𝑒𝑙𝑦 𝑓𝑎𝑙𝑠𝑒 𝑤𝑜𝑟𝑙𝑑 𝑜𝑓 𝑔𝑎𝑚𝑒𝑠 𝑤𝑖𝑡ℎ 𝑖𝑚𝑎𝑔𝑖𝑛𝑎𝑡𝑖𝑜𝑛 𝑓𝑒𝑒𝑙𝑖𝑛𝑔",
+        rating: "4.9/5",
+        size: "1.4GB",
+        category: "RPG . Fighting",
+        links: [
+            "https://dl.apkvision.org/once-human/Once%20Human_1.0.22_apkvision.xapk"
+            
+        ]           
+
+	},
+        
+    "27": {
+        name: "Left to survive",
+        pin: "465783",
+        image: "left.jpg",
+        description: "𝐹𝑖𝑛𝑖𝑠ℎ,𝑓𝑖𝑔ℎ𝑡 𝑎𝑛𝑑 𝑙𝑒𝑎𝑣𝑒 𝑡ℎ𝑒 𝑤𝑜𝑟𝑙𝑑 𝑖𝑛,𝑀𝑎𝑘𝑒 𝑟𝑒𝑚𝑎𝑟𝑘𝑎𝑏𝑙𝑒 𝐻𝑖𝑠𝑡𝑜𝑟𝑦 ",
+        rating: "4.9/5",
+        size: "1.36 GB",
+        category: "RPG • Adventure",
+        links: [
+            ""
+        ]
+        },
+        
+    "28": {
+        name: "𝑆𝑝𝑖𝑑𝑒𝑟 𝑚𝑎𝑛 3 𝑃𝑠𝑃",
+        pin: "460896",
+        image: "Spider.jpg",
+        description: "𝐹𝑖𝑛𝑖𝑠ℎ,𝑓𝑖𝑔ℎ𝑡 𝑎𝑛𝑑 𝑙𝑒𝑎𝑣𝑒 𝑡ℎ𝑒 𝑤𝑜𝑟𝑙𝑑 𝑖𝑛,𝑀𝑎𝑘𝑒 𝑟𝑒𝑚𝑎𝑟𝑘𝑎𝑏𝑙𝑒 𝐻𝑖𝑠𝑡𝑜𝑟𝑦 ",
+        rating: "4.9/5",
+        size: "1.36 GB",
+        category: "RPG • Adventure",
+        links: [
+            "https://www.mediafire.com/file/lg9y846339he14u/Spider-Man_3_%2528USA%2529_%2528v1.02%2529_-_RisTechy.com.zip/file?dkey=6zbxmn0t9lq&r=173lq&r=173lq&r=173"
+        ]
+
+
 }
 };
 
@@ -601,7 +672,10 @@ function showDownloadOptions(gameId) {
             "8": ["CPU-Z App", "POWER VR GRPH", "ADERNO GRPH", "MALI GRPH"],
             "9": ["Game APK", "OBB Data"],
             "11": ["Game OBB", "Game APK"],
-            "13": ["Game Data", "OBB File", "Game APK"]
+            "13": ["Game Data", "OBB File", "Game APK"],
+            "24": ["Game OBB", "Game APK"],
+             "26": ["Game OBB", "Game APK"]
+
         };
         
         return linkNames[gameId] && linkNames[gameId][index] 
