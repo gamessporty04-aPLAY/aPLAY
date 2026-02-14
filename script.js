@@ -220,20 +220,7 @@ const GAME_DATA = {
         links: [
             "https://www.mediafire.com/file/6fm25f39to92gjy/Call_of_Duty_-_Modern_Warfare_3_%2528USA%2529.7z/file"
         ]
-    },
-    "13": {
-        name: "FIFA 26 MOD",
-        pin: "141414",
-        image: "fifa.jpeg",
-        description: "Experience the ultimate football simulation.",
-        rating: "4.9/5",
-        size: "4.4 GB",
-        category: "Football • Sports",
-        links: [
-            "https://www.mediafire.com/file/lrahi23ghicyk00/data.rar/file",
-            "https://www.mediafire.com/file/h7bkoro46k3aope/obb.rar/file",
-            "https://www.mediafire.com/file/a633irr1qjx6vtl/EA_FC_MOD_26_BY_ZEOL.apk/file"
-        ]
+    
     },
     "14": {
         name: "DEAD TO RIGHT PSP",
@@ -424,6 +411,76 @@ const GAME_DATA = {
         category: "RPG • Adventure",
         links: [
             "https://www.mediafire.com/file/lg9y846339he14u/Spider-Man_3_%2528USA%2529_%2528v1.02%2529_-_RisTechy.com.zip/file?dkey=6zbxmn0t9lq&r=173lq&r=173lq&r=173"
+        ]
+        
+ },  "34": {
+        name: "FIFA 26 psp",
+        pin: "144932",
+        image: "psp.jpeg",
+        description: "Experience the ultimate football simulation.",
+        rating: "4.9/5",
+        size: "1.4 GB",
+        category: "Football • Sports",
+        links: [
+            "https://www.mediafire.com/file/fb4qh0gb63awthw/FIFA_26_PSP_ISO.zip/file?dkey=o4lzh8c6tcm&r=417",
+            
+            
+        ]
+        
+},   "30": {
+        name: "FC 26",
+        pin: "002632",
+        image: "fifa.jpeg",
+        description: "Experience the ultimate football simulation.",
+        rating: "4.9/5",
+        size: "1.4 GB",
+        category: "Football • Sports",
+        links: [
+            "https://www.mediafire.com/file/qeyk5gl5roxxvn0/OBB+FC+26+ACTUALIZADO+BETA+BY+GIIODROID+&+ZSF.zip/file?dkey=efiydy2sva4&r=948",
+            "https://www.mediafire.com/file/kgqdjg7zroourg2/APK+FC+26.zip/file?dkey=xu2hmmg4uk3&r=1117",
+            "https://www.mediafire.com/file/70k1z4npuwp2kh8/DATA+FC+26+ACTUALIZADO+BETA+BY+GIIODROID+&+ZSF.zip/file?dkey=emnlu3ghrgy&r=111"
+        ]
+        
+},   "31": {
+        name: "FIFA 16",
+        pin: "140032",
+        image: "16.jpeg",
+        description: "Experience the ultimate football simulation.",
+        rating: "4.9/5",
+        size: "1.1 GB",
+        category: "Football • Sports",
+        links: [
+            "https://www.mediafire.com/file/r7qqwy5h2gdf2pt/OBB+FIFA+16+MOBILE.zip/file",
+            "https://www.mediafire.com/file/nh71086sg2bbgtt/DFL+APK+ANDROID++13.7z/file",
+            "https://www.mediafire.com/file/kn6w7ioirs6pma5/FIFA_19_ANDROID_OFFLINE.zip/file?dkey=14vjhxgway5&r=1768"
+        ]
+        
+},   "32": {
+        name: "FIFA 18",
+        pin: "144486",
+        image: "18.jpeg",
+        description: "Experience the ultimate football simulation.",
+        rating: "4.9/5",
+        size: "1.1 GB",
+        category: "Football • Sports",
+        links: [
+            "https://www.mediafire.com/file/ycxkoqne89x35zh/FIFA_16_OBB_BY_ALPHATRIX_GAMING.zip/file#",
+            "https://www.mediafire.com/file/ov97nxu45nqdzjr/APK_FIFA_16_MOD_EFOOTBALL.zip/file",
+            "https://www.mediafire.com/file/mikjroa9mt6o12c/FIFA_18_DATA_CAREER_MODE_.zip/file"
+        ]
+        
+ },  "33": {
+        name: "GOD OF WAR psp",
+        pin: "780232",
+        image: "ghost.jpeg",
+        description: "Kill Order from ghosts and unknown spirits.",
+        rating: "4.9/5",
+        size: "1 GB",
+        category: "Fighting",
+        links: [
+            "https://downloads.romspedia.com/roms/God%20of%20War%20-%20Ghost%20of%20Sparta%20%28USA%29%20%28En%2CFr%2CEs%29%20%28v2.00%29.zip",
+            
+            
         ]
 
 
@@ -674,7 +731,10 @@ function showDownloadOptions(gameId) {
             "11": ["Game OBB", "Game APK"],
             "13": ["Game Data", "OBB File", "Game APK"],
             "24": ["Game OBB", "Game APK"],
-             "26": ["Game OBB", "Game APK"]
+             "26": ["Game OBB", "Game APK"],
+                                            "30": ["Game OBB", "Game APK","Data"],
+                                             "31": ["Game OBB", "Game APK","Data"],
+                                              "32": ["Game OBB", "Game APK","Data"],
 
         };
         
